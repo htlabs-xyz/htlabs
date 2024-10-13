@@ -1,37 +1,38 @@
 import { Member } from 'app/type'
 import axios from 'axios'
-export const getGithubMember = async (): Promise<Member[]> => {
+import { NextResponse } from 'next/server'
+
+export async function GET() {
   const githubAccessToken: string = process.env.GH_TOKEN || ''
   const query: string = `
-    query 
+query 
 {
-  organization(login: "htlabs-xyz") {
-    membersWithRole(first: 100) {
-      edges {
-        node {
-          login
-          name
-          avatarUrl
-          email
-          company
-          location
-          bio
-          websiteUrl
-          socialAccounts(first: 5) {
-            edges {
-              node {
-                provider
-                url
-              }
-            }
+organization(login: "htlabs-xyz") {
+membersWithRole(first: 100) {
+  edges {
+    node {
+      login
+      name
+      avatarUrl
+      email
+      company
+      location
+      bio
+      websiteUrl
+      socialAccounts(first: 5) {
+        edges {
+          node {
+            provider
+            url
           }
         }
       }
     }
   }
 }
-  `
-
+}
+}
+`
   const { data } = await axios.post(
     'https://api.github.com/graphql',
     { query },
@@ -45,7 +46,7 @@ export const getGithubMember = async (): Promise<Member[]> => {
   if (data.errors) {
     throw new Error(data.errors[0].message)
   }
-  return data.data.organization.membersWithRole.edges.map((edge) => {
+  const result = data.data.organization.membersWithRole.edges.map((edge) => {
     const node = edge.node
     return {
       name: node.name,
@@ -70,4 +71,6 @@ export const getGithubMember = async (): Promise<Member[]> => {
       }),
     } as Member
   })
+
+  return NextResponse.json(result)
 }
