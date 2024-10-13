@@ -3,8 +3,9 @@ import axios from 'axios'
 import { NextResponse } from 'next/server'
 
 export async function GET() {
-  const githubAccessToken: string = process.env.GH_TOKEN || ''
-  const query: string = `
+  try {
+    const githubAccessToken: string = process.env.GH_TOKEN || ''
+    const query: string = `
 query 
 {
 organization(login: "htlabs-xyz") {
@@ -33,44 +34,47 @@ membersWithRole(first: 100) {
 }
 }
 `
-  const { data } = await axios.post(
-    'https://api.github.com/graphql',
-    { query },
-    {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${githubAccessToken}`,
-      },
+    const { data } = await axios.post(
+      'https://api.github.com/graphql',
+      { query },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${githubAccessToken}`,
+        },
+      }
+    )
+    if (data.errors) {
+      throw new Error(data.errors[0].message)
     }
-  )
-  if (data.errors) {
-    throw new Error(data.errors[0].message)
-  }
-  const result = data.data.organization.membersWithRole.edges.map((edge) => {
-    const node = edge.node
-    return {
-      name: node.name,
-      github: node.login,
-      avatar: node.avatarUrl,
-      company: node.company,
-      website: node.websiteUrl,
-      location: node.location,
-      email: node.email,
-      bio: node.bio,
-      social: node.socialAccounts.edges.map((edge) => {
-        if (edge.node.provider === 'GENERIC' && edge.node.url.includes('https://t.me/')) {
+    const result = data.data.organization.membersWithRole.edges.map((edge) => {
+      const node = edge.node
+      return {
+        name: node.name,
+        github: node.login,
+        avatar: node.avatarUrl,
+        company: node.company,
+        website: node.websiteUrl,
+        location: node.location,
+        email: node.email,
+        bio: node.bio,
+        social: node.socialAccounts.edges.map((edge) => {
+          if (edge.node.provider === 'GENERIC' && edge.node.url.includes('https://t.me/')) {
+            return {
+              provider: 'telegram',
+              url: edge.node.url,
+            }
+          }
           return {
-            provider: 'telegram',
+            provider: edge.node.provider.toLowerCase(),
             url: edge.node.url,
           }
-        }
-        return {
-          provider: edge.node.provider.toLowerCase(),
-          url: edge.node.url,
-        }
-      }),
-    } as Member
-  })
+        }),
+      } as Member
+    })
 
-  return NextResponse.json(result)
+    return NextResponse.json(result)
+  } catch (error) {
+    return NextResponse.json(new Error('Failed to fetch data from GitHub'))
+  }
 }
