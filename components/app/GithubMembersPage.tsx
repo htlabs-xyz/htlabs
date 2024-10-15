@@ -1,9 +1,15 @@
+'use client'
 import { Member } from 'app/type'
 import MemberLayout from '@/layouts/MemberLayout'
 import { getGithubMember } from 'app/actions/getGithubMember'
+import { useQuery } from '@tanstack/react-query'
+import { isNil } from 'lodash'
 
-export default async function GithubMembersPage() {
-  const allMembers = await getGithubMember()
+export default function GithubMembersPage() {
+  const { data: allMembers } = useQuery({
+    queryKey: ['getGithubMember'],
+    queryFn: getGithubMember,
+  })
   return (
     <>
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
@@ -13,13 +19,14 @@ export default async function GithubMembersPage() {
           </h1>
         </div>
         <div className="flex flex-col gap-4">
-          {allMembers.map((member: Member) => {
-            return (
-              <div key={member.github} className="p-4">
-                <MemberLayout member={member} />
-              </div>
-            )
-          })}
+          {!isNil(allMembers) &&
+            allMembers.map((member: Member) => {
+              return (
+                <div key={member.github} className="p-4">
+                  <MemberLayout member={member} />
+                </div>
+              )
+            })}
         </div>
       </div>
     </>
