@@ -4,7 +4,7 @@ export type Member = {
   name: string
   github: string
   avatar: string
-  company: number
+  company: string
   website: string
   location: string
   email: string
