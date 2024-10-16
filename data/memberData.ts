@@ -25,6 +25,17 @@ const allMembers: Member[] = [
       },
     ],
   },
+  {
+    name: 'Nguyễn Duy Khánh',
+    email: 'independenceee',
+    github: 'tidvn',
+    avatar: 'https://avatars.githubusercontent.com/u/108068667?v=4',
+    company: '',
+    website: '',
+    location: 'HaNoi, VietNam',
+    bio: 'Blockchain Developer',
+    social: [],
+  },
 ]
 
 export default allMembers
