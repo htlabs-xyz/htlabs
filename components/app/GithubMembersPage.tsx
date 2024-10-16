@@ -1,6 +1,6 @@
 import { Member } from 'app/type'
 import MemberLayout from '@/layouts/MemberLayout'
-import { getGithubMember } from 'app/actions/getGithubMember'
+import { getGithubMember } from 'actions/getGithubMember'
 
 export default async function GithubMembersPage() {
   const allMembers = await getGithubMember()
