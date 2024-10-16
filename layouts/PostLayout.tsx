@@ -10,7 +10,7 @@ import Tag from '@/components/common/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import ScrollTopAndComment from '@/components/common/ScrollTopAndComment'
 import { Member } from 'app/type'
-import { getGithubMember } from 'app/actions/getGithubMember'
+import { getGithubMember } from 'actions/getGithubMember'
 
 const editUrl = (path) => `${siteMetadata.siteRepo}/blob/main/data/${path}`
 const discussUrl = (path) =>
