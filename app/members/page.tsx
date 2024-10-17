@@ -1,8 +1,8 @@
 import { genPageMetadata } from 'app/seo'
-import GithubMembersPage from '@/components/app/GithubMembersPage'
+import MembersPage from '@/components/app/MembersPage'
 
 export const metadata = genPageMetadata({ title: 'Members' })
 
 export default function Page() {
-  return <GithubMembersPage />
+  return <MembersPage />
 }
