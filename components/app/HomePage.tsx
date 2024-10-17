@@ -5,6 +5,8 @@ import { formatDate } from 'pliny/utils/formatDate'
 import NewsletterForm from 'pliny/ui/NewsletterForm'
 import Link from '@/components/common/Link'
 import Tag from '@/components/common/Tag'
+import { allProjects } from 'contentlayer/generated'
+import Card from '../common/Card'
 // import projectsData from '@/data/projectsData'
 // import Card from '@/components/Card'
 // import Marquee from 'react-fast-marquee'
@@ -21,29 +23,27 @@ export default function Home({ posts }) {
               style={{
                 background: "url('/static/images/night.jpg')",
                 borderRadius: '10px',
-                marginBottom: 50,
                 objectFit: 'cover',
                 height: 400,
                 backgroundSize: 'cover',
                 backgroundRepeat: 'no-repeat',
-                backgroundPosition: '20% 80%',
+                backgroundPosition: 'center',
+                position: 'relative',
               }}
             />
-            <h1 className="mb-2 text-3xl font-bold tracking-tighter text-white md:text-7xl lg:text-5xl">
-              <span>Build a playground </span>
-              <br className="hidden lg:block"></br>
-              For passionate low-level programmers
+            <h1 className="mb-2 mt-16 text-3xl font-bold tracking-tighter md:text-7xl lg:text-5xl">
+              {siteMetadata.description}
             </h1>
             <br></br>
             <p className="mx-auto  text-xl font-normal leading-relaxed text-gray-600 dark:text-gray-300 lg:w-2/3">
-              {siteMetadata.description}
+              {/* {siteMetadata.description} */}
             </p>
           </div>
         </div>
       </section>
       <br />
       <div className="flex items-center justify-center">
-        <a
+        {/* <a
           href="https://discord.gg/"
           className="flex items-center rounded-lg border border-gray-900 bg-gray-800 px-6 py-2 text-sm font-medium text-white shadow-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-offset-2"
         >
@@ -65,55 +65,12 @@ export default function Home({ posts }) {
             </g>
           </svg>
           <span>Continue with Discord</span>
-        </a>
+        </a> */}
       </div>
       <br />
       <br />
-      <div className="divide-y divide-gray-200 dark:divide-gray-700">
-        <div className="space-y-2 pb-8 pt-6 md:space-y-5">
-          <h1 className="text-2xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-3xl sm:leading-10 md:text-3xl md:leading-14">
-            Why do we build this community?
-          </h1>
-          <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
-            {siteMetadata.expandedDescription}
-          </p>
-        </div>
-      </div>
-      <div className="divide-y divide-gray-200 dark:divide-gray-700">
-        <div className="space-y-2 pb-8 pt-6 md:space-y-5">
-          <h1 className="text-2xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-3xl sm:leading-10 md:text-3xl md:leading-14">
-            What are we focusing on?
-          </h1>
-          <div className="lg:flex lg:justify-evenly">
-            {/* {siteMetadata.focusTopics.map((topic) => (
-              <div
-                key={topic.title}
-                className="mx-3 my-5 max-w-sm overflow-hidden rounded bg-gray-900 shadow-lg"
-              >
-                <div className="px-6 py-4">
-                  <div className="mb-2 text-xl font-bold">{topic.title}</div>
-                  <p className="text-base text-gray-500">{topic.description}</p>
-                </div>
-              </div>
-            ))} */}
-          </div>
-        </div>
-      </div>
-      <div className="divide-y divide-gray-200 dark:divide-gray-700">
-        <div className="space-y-2 pb-8 pt-6 md:space-y-5">
-          <h1 className="text-2xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-3xl sm:leading-10 md:text-3xl md:leading-14">
-            How to contribute to the community?
-          </h1>
-          <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
-            LowLevelers is open-source and everyone can contribute to the site. Blog data is stored
-            in <span className="font-bold text-primary-500">data/blog</span>. To contribute, please
-            create a pull request (PR) following the guidelides to submit a new markdown file to the
-            path above.
-          </p>
-          <div className="lg:flex lg:justify-evenly"></div>
-        </div>
-      </div>
-      <div className="divide-y divide-gray-200 dark:divide-gray-700">
+
+      {/* <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="space-y-2 pb-8 pt-6 md:space-y-5">
           <h1 className="text-2xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-3xl sm:leading-10 md:text-3xl md:leading-14">
             Experimental Projects
@@ -121,17 +78,17 @@ export default function Home({ posts }) {
           <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
             List of projects made or contributed by OpenGuild
           </p>
-          {/* <Marquee autoFill speed={150}>
-            {projectsData.map((d) => (
+          <Marquee autoFill speed={150}>
+            {allProjects.map((d) => (
               <Card
                 key={d.title}
                 title={d.title}
-                description={d.description}
-                imgSrc={d.imgSrc}
-                href={d.href}
+                description={d.summary}
+                imgSrc={d.images}
+                href={d.link ? d.link : `/projects/${d.slug}`}
               />
             ))}
-          </Marquee> */}
+          </Marquee>
         </div>
       </div>
       <div className="flex justify-end text-base font-medium leading-6">
@@ -142,8 +99,8 @@ export default function Home({ posts }) {
         >
           All Projects &rarr;
         </Link>
-      </div>
-      <div className="divide-y divide-gray-200 dark:divide-gray-700">
+      </div> */}
+      {/* <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="space-y-2 pb-8 pt-6 md:space-y-5">
           <h1 className="text-2xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-3xl sm:leading-10 md:text-3xl md:leading-14">
             Latest Announcements & Blogs
@@ -206,8 +163,8 @@ export default function Home({ posts }) {
               )
             })}
         </ul>
-      </div>
-      {posts.length > MAX_DISPLAY && (
+      </div> */}
+      {/* {posts.length > MAX_DISPLAY && (
         <div className="flex justify-end text-base font-medium leading-6">
           <Link
             href="/blog"
@@ -217,12 +174,12 @@ export default function Home({ posts }) {
             All Posts &rarr;
           </Link>
         </div>
-      )}
-      {siteMetadata.newsletter?.provider && (
+      )} */}
+      {/* {siteMetadata.newsletter?.provider && (
         <div className="flex items-center justify-center pt-4">
           <NewsletterForm />
         </div>
-      )}
+      )} */}
     </>
   )
 }
