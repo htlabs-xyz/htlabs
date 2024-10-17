@@ -79,6 +79,10 @@ module.exports = () => {
           protocol: 'https',
           hostname: 'cardano.ideascale.com',
         },
+        {
+          protocol: 'https',
+          hostname: 'projectcatalyst.io',
+        },
       ],
     },
     async headers() {
