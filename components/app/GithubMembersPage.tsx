@@ -1,19 +1,8 @@
-'use client'
 import { Member } from 'app/type'
 import MemberLayout from '@/layouts/MemberLayout'
-import { getGithubMember } from 'actions/getGithubMember'
-import { useEffect, useState } from 'react'
+import allMembers from '@/data/memberData'
 
 export default function GithubMembersPage() {
-  const [allMembers, setAllMembers] = useState<Member[]>([])
-
-  useEffect(() => {
-    const fetchMembers = async () => {
-      const members = await getGithubMember()
-      setAllMembers(members)
-    }
-    fetchMembers()
-  }, [])
   return (
     <>
       <div className="divide-y divide-gray-200 dark:divide-gray-700">

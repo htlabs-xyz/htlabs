@@ -1,7 +1,6 @@
 import Card from '@/components/common/Card'
 import { genPageMetadata } from 'app/seo'
 import { allProjects } from 'contentlayer/generated'
-import type { Project } from 'contentlayer/generated'
 export const metadata = genPageMetadata({ title: 'Projects' })
 
 export default function Projects() {
@@ -24,7 +23,7 @@ export default function Projects() {
                 title={d.title}
                 description={d.summary}
                 imgSrc={d.images}
-                href={`/projects/${d.slug}`}
+                href={d.link ? d.link : `/projects/${d.slug}`}
               />
             ))}
           </div>
