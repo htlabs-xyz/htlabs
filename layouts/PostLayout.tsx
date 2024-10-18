@@ -9,9 +9,7 @@ import Image from '@/components/common/Image'
 import Tag from '@/components/common/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import ScrollTopAndComment from '@/components/common/ScrollTopAndComment'
-import { Member } from 'app/type'
-import { getGithubMember } from 'actions/getGithubMember'
-import allMembers from '@/data/memberData'
+import { getGithubMembers } from 'actions/getGithubMember'
 
 const editUrl = (path) => `${siteMetadata.siteRepo}/blob/main/data/${path}`
 const discussUrl = (path) =>
@@ -41,6 +39,7 @@ export default async function PostLayout({
 }: LayoutProps) {
   const { filePath, path, slug, date, title, tags } = content
   const basePath = path.split('/')[0]
+  const allMembers = await getGithubMembers()
 
   const authorDetails = authorList.map((author) => {
     const member = allMembers.find((m) => m.github === author)
