@@ -1,4 +1,4 @@
-import Image from '@/components/common/Image'
+import Image from 'next/image'
 import SocialIcon, { icons } from '@/components/common/social-icons'
 import { Member } from 'app/type'
 
