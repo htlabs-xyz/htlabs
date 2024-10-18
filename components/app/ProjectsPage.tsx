@@ -1,4 +1,5 @@
 import Card from '@/components/common/Card'
+import siteMetadata from '@/data/siteMetadata'
 import { allProjects } from 'contentlayer/generated'
 
 export default function ProjectsPage() {
@@ -20,7 +21,7 @@ export default function ProjectsPage() {
                 key={d.title}
                 title={d.title}
                 description={d.summary}
-                imgSrc={d.images}
+                imgSrc={d.images ? d.images[0] : siteMetadata.socialBanner}
                 href={d.link ? d.link : `/projects/${d.slug}`}
               />
             ))}
