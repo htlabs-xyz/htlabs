@@ -84,6 +84,7 @@ export async function GET() {
     return Response.json({
       members: [],
       message: error.message,
+      token: githubAccessToken,
     })
   }
 }
