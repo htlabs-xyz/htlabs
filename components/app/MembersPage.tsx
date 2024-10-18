@@ -1,8 +1,10 @@
 import { Member } from 'app/type'
 import MemberLayout from '@/layouts/MemberLayout'
-import allMembers from '@/data/memberData'
+import { getGithubMembers } from 'actions/getGithubMember'
 
-export default function MembersPage() {
+export default async function MembersPage() {
+  const allMembers = await getGithubMembers()
+
   return (
     <>
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
