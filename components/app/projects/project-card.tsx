@@ -3,13 +3,19 @@ import { Project } from '@/.contentlayer/generated'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { Card } from '@/components/ui/card'
 import Link from '@/components/ui/link'
+import { cn } from '@/utils'
 
 export default function ProjectCard({ project }: { project: Project }) {
   const { title, slug, description, images, link } = project
   const href = link ? link : `/projects/${slug}`
   return (
-    <Card className="flex flex-col items-start space-y-2 xl:grid xl:grid-cols-4 xl:gap-x-8 xl:space-y-0">
-      <div className="flex h-full items-center justify-center border-t-slate-600 p-4 xl:col-span-2">
+    <Card
+      className={cn([
+        'flex flex-col gap-6 p-4 md:h-80 md:flex-row md:gap-12 md:py-8',
+        // reversed && 'md:flex-row-reverse',
+      ])}
+    >
+      <div className="flex h-full items-center justify-center border-t-slate-600 p-4 sm:h-80 md:h-auto md:w-1/2">
         {images && (
           <AspectRatio ratio={16 / 9} className="bg-muted">
             <Image
@@ -21,17 +27,34 @@ export default function ProjectCard({ project }: { project: Project }) {
           </AspectRatio>
         )}
       </div>
-      <div className="prose max-w-none pb-8 pt-8 dark:prose-invert xl:col-span-2">
-        <h2 className="mb-3 text-2xl font-bold leading-8 tracking-tight">
-          {href ? (
-            <Link href={href} aria-label={`Link to ${title}`}>
-              {title}
-            </Link>
-          ) : (
-            title
-          )}
-        </h2>
-        <p className="prose mb-3 max-w-none text-gray-500 dark:text-gray-400">{description}</p>
+      <div className="flex grow flex-col justify-between space-y-6 pb-1 md:w-1/2 md:pb-0">
+        <div className="space-y-4">
+          <h2 className="text-[1.75rem] font-semibold leading-8">
+            {href ? (
+              <Link href={href} aria-label={`Link to ${title}`}>
+                {title}
+              </Link>
+            ) : (
+              title
+            )}
+          </h2>
+          <div className="max-w-none space-y-4">
+            {/* <div className="flex flex-wrap items-center gap-2">
+              {builtWith?.map((tool) => {
+                return (
+                  <Brand
+                    key={tool}
+                    name={tool as keyof typeof BrandsMap}
+                    iconClassName={clsx(
+                      tool === 'Pygame' ? 'h-5 md:h-5.5' : 'h-5 w-5 md:h-5.5 md:w-5.5'
+                    )}
+                  />
+                )
+              })}
+            </div> */}
+            <p className="line-clamp-3 text-gray-600 dark:text-gray-400">{description}</p>
+          </div>
+        </div>
         {href && (
           <Link
             href={href}
@@ -42,10 +65,6 @@ export default function ProjectCard({ project }: { project: Project }) {
           </Link>
         )}
       </div>
-      {/* <div className="prose max-w-none pb-8 pt-8 dark:prose-invert xl:col-span-2">
-        <h3 className="text-2xl font-bold leading-8 tracking-tight">{title}</h3>
-        <div className="h-14">{description}</div>
-      </div> */}
     </Card>
   )
 }
