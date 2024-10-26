@@ -2,11 +2,7 @@ import Image from 'next/image'
 import SocialIcon, { icons } from '@/components/common/social-icons'
 import { Member } from 'app/type'
 
-interface Props {
-  member: Member
-}
-
-export default function MemberLayout({ member }: Props) {
+export default function MemberCard({ member }: { member: Member }) {
   const { name, github, avatar, company, website, location, email, bio, social } = member
   return (
     <div className="flex flex-col items-start space-y-2 xl:grid xl:grid-cols-3 xl:gap-x-8 xl:space-y-0">
