@@ -1,4 +1,4 @@
-import ProjectsPage from '@/components/app/ProjectsPage'
+import ProjectsPage from '@/components/app/projects'
 import { genPageMetadata } from 'app/seo'
 export const metadata = genPageMetadata({ title: 'Projects' })
 
