@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // import Link from '@/components/Link'
 // import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'

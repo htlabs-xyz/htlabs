@@ -1,5 +1,3 @@
-import { icons } from '@/components/common/social-icons'
-
 export type Member = {
   name: string
   github: string

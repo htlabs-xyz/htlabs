@@ -8,18 +8,11 @@ import Image from 'next/image'
 import Tag from '@/components/common/Tag'
 import ScrollTopAndComment from '@/components/common/ScrollTopAndComment'
 import { FaRegCalendarAlt } from 'react-icons/fa'
-import { FaRegHourglassHalf, FaFire } from 'react-icons/fa6'
+import { FaRegHourglassHalf } from 'react-icons/fa6'
 import ProgressBar from '@/components/common/ProgressBar'
 import { getGithubMembers } from 'actions/getGithubMember'
 import siteMetadata from '@/data/siteMetadata'
 import Comments from '@/components/common/Comments'
-
-const postDateTemplate: Intl.DateTimeFormatOptions = {
-  weekday: 'long',
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
-}
 
 interface LayoutProps {
   content: CoreContent<Blog>
