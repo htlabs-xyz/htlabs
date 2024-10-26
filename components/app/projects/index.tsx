@@ -1,8 +1,7 @@
-import Card from '@/components/common/Card'
-import siteMetadata from '@/data/siteMetadata'
-import { allProjects } from 'contentlayer/generated'
+import { allProjects, Project } from '@/.contentlayer/generated'
+import ProjectCard from './project-card'
 
-export default function ProjectsPage() {
+export default async function ProjectsPage() {
   return (
     <>
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
@@ -14,18 +13,14 @@ export default function ProjectsPage() {
             List of projects made or contributed by HTLabs team.
           </p>
         </div>
-        <div className="container py-12">
-          <div className="-m-4 flex flex-wrap justify-center">
-            {allProjects.map((d) => (
-              <Card
-                key={d.title}
-                title={d.title}
-                description={d.summary}
-                imgSrc={d.images ? d.images[0] : siteMetadata.socialBanner}
-                href={d.link ? d.link : `/projects/${d.slug}`}
-              />
-            ))}
-          </div>
+        <div className="flex flex-col gap-4">
+          {allProjects.map((project: Project) => {
+            return (
+              <div key={project.title} className="p-4">
+                <ProjectCard project={project} />
+              </div>
+            )
+          })}
         </div>
       </div>
     </>

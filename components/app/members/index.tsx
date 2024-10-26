@@ -1,5 +1,5 @@
 import { Member } from 'app/type'
-import MemberLayout from '@/layouts/MemberLayout'
+import MemberCard from '@/components/app/members/member-card'
 import { getGithubMembers } from 'actions/getGithubMember'
 
 export default async function MembersPage() {
@@ -17,7 +17,7 @@ export default async function MembersPage() {
           {allMembers.map((member: Member) => {
             return (
               <div key={member.github} className="p-4">
-                <MemberLayout member={member} />
+                <MemberCard member={member} />
               </div>
             )
           })}

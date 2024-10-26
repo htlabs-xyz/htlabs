@@ -46,10 +46,10 @@ export async function generateMetadata({
 
   return {
     title: post.title,
-    description: post.summary,
+    description: post.description,
     openGraph: {
       title: post.title,
-      description: post.summary,
+      description: post.description,
       siteName: siteMetadata.title,
       locale: 'en_US',
       type: 'article',
@@ -62,7 +62,7 @@ export async function generateMetadata({
     twitter: {
       card: 'summary_large_image',
       title: post.title,
-      description: post.summary,
+      description: post.description,
       images: imageList,
     },
   }
