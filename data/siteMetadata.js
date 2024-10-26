@@ -1,18 +1,18 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
-  title: 'Next.js Starter Blog',
-  author: 'Tails Azimuth',
-  headerTitle: 'TailwindBlog',
-  description: 'A blog created with Next.js and Tailwind.css',
+  title: 'HT Labs',
+  author: 'HT Labs',
+  headerTitle: 'HT Labs',
+  description: 'HT Labs is a technology labs that specializes in blockchain development.',
   language: 'en-us',
-  theme: 'system', // system, dark or light
-  siteUrl: 'https://tailwind-nextjs-starter-blog.vercel.app',
-  siteRepo: 'https://github.com/timlrx/tailwind-nextjs-starter-blog',
-  siteLogo: `${process.env.BASE_PATH || ''}/static/images/logo.png`,
-  socialBanner: `${process.env.BASE_PATH || ''}/static/images/twitter-card.png`,
-  mastodon: 'https://mastodon.social/@mastodonuser',
-  email: 'address@yoursite.com',
-  github: 'https://github.com',
+  theme: 'light', // system, dark or light
+  siteUrl: process.env.BASE_URL || 'https://htlabs.xyz',
+  siteRepo: 'https://github.com/htlabs-xyz/htlabs',
+  siteLogo: `${process.env.BASE_URL || ''}/static/images/logo.png`,
+  socialBanner: `${process.env.BASE_URL || ''}/static/images/twitter-card.png`,
+  // mastodon: 'https://mastodon.social/@mastodonuser',
+  email: 'contact@htlabs.xyz',
+  github: 'https://github.com/htlabs-xyz',
   x: 'https://twitter.com/x',
   // twitter: 'https://twitter.com/Twitter',
   facebook: 'https://facebook.com',
@@ -20,7 +20,6 @@ const siteMetadata = {
   linkedin: 'https://www.linkedin.com',
   threads: 'https://www.threads.net',
   instagram: 'https://www.instagram.com',
-  medium: 'https://medium.com',
   locale: 'en-US',
   // set to true if you want a navbar fixed to the top
   stickyNav: false,
@@ -86,7 +85,7 @@ const siteMetadata = {
   search: {
     provider: 'kbar', // kbar or algolia
     kbarConfig: {
-      searchDocumentsPath: `${process.env.BASE_PATH || ''}/search.json`, // path to load documents to search
+      searchDocumentsPath: `${process.env.BASE_URL || ''}/search.json`, // path to load documents to search
     },
     // provider: 'algolia',
     // algoliaConfig: {
@@ -96,6 +95,9 @@ const siteMetadata = {
     //   apiKey: '599cec31baffa4868cae4e79f180729b',
     //   indexName: 'docsearch',
     // },
+  },
+  env: {
+    githubAccessToken: process.env.GH_TOKEN,
   },
 }
 

@@ -13,7 +13,7 @@ const ContentSecurityPolicy = `
   media-src *.s3.amazonaws.com;
   connect-src *;
   font-src 'self';
-  frame-src giscus.app
+  frame-src https://platform.twitter.com https://www.youtube.com
 `
 
 const securityHeaders = [
@@ -54,18 +54,13 @@ const securityHeaders = [
   },
 ]
 
-const output = process.env.EXPORT ? 'export' : undefined
-const basePath = process.env.BASE_PATH || undefined
-const unoptimized = process.env.UNOPTIMIZED ? true : undefined
-
 /**
  * @type {import('next/dist/next-server/server/config').NextConfig}
  **/
 module.exports = () => {
   const plugins = [withContentlayer, withBundleAnalyzer]
   return plugins.reduce((acc, next) => next(acc), {
-    output,
-    basePath,
+    output: 'standalone',
     reactStrictMode: true,
     pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
     eslint: {
@@ -77,8 +72,23 @@ module.exports = () => {
           protocol: 'https',
           hostname: 'picsum.photos',
         },
+        {
+          protocol: 'https',
+          hostname: 'avatars.githubusercontent.com',
+        },
+        {
+          protocol: 'https',
+          hostname: 'cardano.ideascale.com',
+        },
+        {
+          protocol: 'https',
+          hostname: 'projectcatalyst.io',
+        },
+        {
+          protocol: 'https',
+          hostname: '*.blob.vercel-storage.com',
+        },
       ],
-      unoptimized,
     },
     async headers() {
       return [

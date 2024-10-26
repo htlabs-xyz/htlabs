@@ -1,0 +1,47 @@
+name: Deploy To AWS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install -force
+
+      - name: Build Next.js app
+        run: npm run build
+
+      - name: Copy files via SSH
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: '.next/standalone'
+          target: ${{ secrets.APP_DIRECTORY }}
+
+      - name: SSH Commands
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd ${{ secrets.APP_DIRECTORY }}/.next/standalone
+            echo -e "GH_TOKEN=${{ secrets.GH_TOKEN }}\nBASE_URL=${{ secrets.BASE_URL }}" > .env
+            pm2 restart htlabs-app || \
+            pm2 start server.js --name "htlabs-app"
+
