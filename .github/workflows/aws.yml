@@ -22,6 +22,10 @@ jobs:
         run: npm install -force
 
       - name: Build Next.js app
+        env:
+          NODE_ENV: production
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          BASE_URL: ${{ secrets.BASE_URL }}
         run: npm run build
 
       - name: Copy files via SSH
