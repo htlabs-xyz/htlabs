@@ -19,7 +19,7 @@ export default function MemberCard({ member }: { member: Member }) {
       </div>
       <div className="prose max-w-none pb-8 pt-8 dark:prose-invert xl:col-span-2">
         <h3 className="text-2xl font-bold leading-8 tracking-tight">{name}</h3>
-        <div className="h-14">{bio}</div>
+        <div className="h-full">{bio}</div>
         <div className="mt-2 text-gray-500 dark:text-gray-400">{company}</div>
         <div className="text-gray-500 dark:text-gray-400">{location}</div>
         <div className="flex space-x-3 pt-6">
