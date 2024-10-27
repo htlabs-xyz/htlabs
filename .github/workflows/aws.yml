@@ -46,5 +46,5 @@ jobs:
           script: |
             cd ${{ secrets.APP_DIRECTORY }}/.next/standalone
             echo -e "GH_TOKEN=${{ secrets.GH_TOKEN }}\nBASE_URL=${{ secrets.BASE_URL }}" > .env
-            bun --bun run pm2 restart htlabs-app || \
-            bun --bun run pm2 start server.js --name "htlabs-app"
+            bunx pm2 restart htlabs-app || \
+            bunx pm2 start server.js --name "htlabs-app"
