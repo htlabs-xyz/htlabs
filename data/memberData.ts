@@ -2,7 +2,7 @@ import { Member } from '@/app/type'
 
 const membersData: Member[] = [
   {
-    name: 'Phùng Tiến Dũng | Founder',
+    name: 'Phùng Tiến Dũng',
     github: 'tidvn',
     avatar: 'https://avatars.githubusercontent.com/u/74198018?v=4',
     company: '',
@@ -29,7 +29,7 @@ const membersData: Member[] = [
     ],
   },
   {
-    name: 'Nguyễn Duy Khánh | Co-Founder',
+    name: 'Nguyễn Duy Khánh',
     github: 'independenceee',
     avatar: 'https://avatars.githubusercontent.com/u/108068667?v=4',
     email: 'nguyenkhanh17112003@gmail.com',
@@ -51,7 +51,7 @@ const membersData: Member[] = [
   },
 
   {
-    name: 'Nguyễn Hồng Sơn | Co-Founder',
+    name: 'Nguyễn Hồng Sơn',
     github: 'sonson0910',
     avatar: 'https://avatars.githubusercontent.com/u/91943651?v=4',
     email: '',

@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import { CoreContent } from 'pliny/utils/contentlayer'
-import type { Blog } from 'contentlayer/generated'
+import type { Post } from 'contentlayer/generated'
 import Link from '@/components/common/Link'
 import PageTitle from '@/components/common/PageTitle'
 import SectionContainer from '@/components/common/SectionContainer'
@@ -15,7 +15,7 @@ import siteMetadata from '@/data/siteMetadata'
 import Comments from '@/components/common/Comments'
 
 interface LayoutProps {
-  content: CoreContent<Blog>
+  content: CoreContent<Post>
   authorList: string[]
   next?: { path: string; title: string; url: string }
   prev?: { path: string; title: string; url: string }
@@ -103,7 +103,7 @@ export default async function PostLayout({
                           <dd>
                             {author.github && (
                               <Link
-                                href={author.github}
+                                href={'https://github.com/' + author.github}
                                 className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
                               >
                                 {author.github.replace('https://github.com/', '@')}
