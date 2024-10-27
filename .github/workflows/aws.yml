@@ -44,10 +44,7 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            source $HOME/.bashrc
             cd ${{ secrets.APP_DIRECTORY }}/.next/standalone
-            echo $PATH >> path.txt
-            
-            # echo -e "GH_TOKEN=${{ secrets.GH_TOKEN }}\nBASE_URL=${{ secrets.BASE_URL }}" > .env
-            # bun --bun run pm2 restart htlabs-app || \
-            # bun --bun run pm2 start --interpreter $BUN_INSTALL/bin/bun server.js --name "htlabs-app"
+            echo -e "GH_TOKEN=${{ secrets.GH_TOKEN }}\nBASE_URL=${{ secrets.BASE_URL }}" > .env
+            bun --bun run pm2 restart htlabs-app || \
+            bun --bun run pm2 start server.js --name "htlabs-app"
