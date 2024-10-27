@@ -44,6 +44,7 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
+            source $HOME/.bashrc
             cd ${{ secrets.APP_DIRECTORY }}/.next/standalone
             echo $PATH >> path.txt
             
