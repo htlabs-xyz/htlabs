@@ -1,1 +1,6 @@
-npx --no-install lint-staged
+#!/bin/sh
+if command -v npm >/dev/null 2>&1; then
+  npx --no-install lint-staged
+else
+  bun run lint-staged
+fi
