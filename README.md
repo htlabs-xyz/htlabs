@@ -43,9 +43,9 @@ When modifying content, Contentlayer automatically regenerates the type-safe con
   - `posts/`: Blog post dynamic routes
   - `projects/`: Project page routes
   - `tags/`: Tag listing pages
-  - `ideascale/`, `members/`: Custom feature pages
+  - `proposal/`, `members/`: Custom feature pages
 - `components/`: React components organized by scope
-  - `app/`: Page-level components (HomePage, IdeascalePage, etc.)
+  - `app/`: Page-level components (HomePage, ProposalPage, etc.)
   - `common/`: Shared components (Header, Footer, SectionContainer)
   - `ui/`: Reusable UI primitives
 - `layouts/`: MDX content layout components
@@ -54,7 +54,7 @@ When modifying content, Contentlayer automatically regenerates the type-safe con
 - `data/`: Content and configuration
   - `posts/`, `projects/`: MDX content files
   - `siteMetadata.js`: Site configuration (analytics, comments, search, social links)
-  - `headerNavLinks.ts`, `memberData.ts`, `ideascaleData.ts`: Data files
+  - `headerNavLinks.ts`, `memberData.ts`, `proposalData.ts`: Data files
 - `utils/`: Utility functions
 - `css/`: Global styles and Tailwind imports
 - `public/`: Static assets
@@ -114,7 +114,7 @@ Environment variables control build output:
 
 Next.js Image component is configured with remote patterns for:
 - GitHub avatars
-- Ideascale/Project Catalyst assets
+- Proposal/Project Catalyst assets
 - Vercel blob storage
 - Picsum photos (placeholder images)
 

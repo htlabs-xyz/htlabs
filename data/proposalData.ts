@@ -1,11 +1,11 @@
-interface IdeascaleProject {
+interface Proposal {
   title: string
   description: string
   href?: string
   imgSrc?: string
 }
 
-const ideascaleData: IdeascaleProject[] = [
+const ideascaleData: Proposal[] = [
   {
     title: '[HTLABS] Freelance Connect: Building Trust Between Freelancers and Employers',
     description: `a platform that uses the Cardano blockchain to create secure contracts between freelancers and employers, eliminating trust issues and payment disputes through transparent transactions`,
