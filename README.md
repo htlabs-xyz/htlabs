@@ -1,36 +1,128 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Next.js 16-based blog and content platform built with React 19, TypeScript, Tailwind CSS v4, and Contentlayer2 for MDX content management.
 
-## Getting Started
+## Development Commands
 
-First, run the development server:
+Use bun for all package management and commands:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+bun dev              # Start development server (uses webpack)
+bun run build        # Build for production (uses webpack)
+bun start            # Start production server
+bun lint             # Run ESLint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Content Management Architecture
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Contentlayer2 Integration
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The project uses Contentlayer2 to process MDX files from the `data/` directory into strongly-typed content:
 
-## Learn More
+- **Configuration**: `contentlayer.config.ts`
+- **Content Types**:
+  - `Post`: Blog posts from `data/posts/**/*.mdx`
+  - `Project`: Project pages from `data/projects/**/*.mdx`
+- **Generated Output**: `.contentlayer/generated/` (gitignored)
+- **Auto-generated Files**:
+  - `app/tag-data.json`: Tag counts for all posts
+  - `public/search.json`: Search index for kbar search
 
-To learn more about Next.js, take a look at the following resources:
+### MDX Processing Pipeline
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Content is processed through remark and rehype plugins:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Remark** (markdown): GFM, math, code titles, image-to-JSX, GitHub alerts
+- **Rehype** (HTML): Slug generation, autolink headings, KaTeX math, citations, Prism syntax highlighting
 
-## Deploy on Vercel
+When modifying content, Contentlayer automatically regenerates the type-safe content during development.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Project Structure
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Core Directories
+
+- `app/`: Next.js 16 App Router pages and API routes
+  - `posts/`: Blog post dynamic routes
+  - `projects/`: Project page routes
+  - `tags/`: Tag listing pages
+  - `ideascale/`, `members/`: Custom feature pages
+- `components/`: React components organized by scope
+  - `app/`: Page-level components (HomePage, IdeascalePage, etc.)
+  - `common/`: Shared components (Header, Footer, SectionContainer)
+  - `ui/`: Reusable UI primitives
+- `layouts/`: MDX content layout components
+  - `PostLayout.tsx`, `PostSimple.tsx`, `PostBanner.tsx`: Post layouts
+  - `ListLayout.tsx`, `ListLayoutWithTags.tsx`: List views
+- `data/`: Content and configuration
+  - `posts/`, `projects/`: MDX content files
+  - `siteMetadata.js`: Site configuration (analytics, comments, search, social links)
+  - `headerNavLinks.ts`, `memberData.ts`, `ideascaleData.ts`: Data files
+- `utils/`: Utility functions
+- `css/`: Global styles and Tailwind imports
+- `public/`: Static assets
+- `scripts/`: Build scripts (RSS generation, asset copying)
+
+### Path Aliases
+
+TypeScript is configured with path aliases:
+- `@/*` → project root
+- `contentlayer/generated` → `.contentlayer/generated`
+- `pliny/*` → `node_modules/pliny/*`
+
+## Styling
+
+- **Framework**: Tailwind CSS v4 with `@tailwindcss/postcss` plugin
+- **Configuration**: CSS-based configuration via `@import` in `css/tailwind.css`
+- **Plugins**: `@tailwindcss/typography` for prose, `@tailwindcss/forms` for forms
+- **Font**: Lexend from Google Fonts (variable font)
+
+## Git Workflow
+
+- **Pre-commit Hook**: Husky runs lint-staged (configured in `.husky/pre-commit`)
+- **Lint-staged**: Automatically formats and lints staged files before commit
+- **Main Branch**: `main` (use for PRs)
+
+## Key Dependencies
+
+- **Next.js**: 16.0.1 with webpack bundler (specified via `--webpack` flag)
+- **React**: 19.2.0
+- **Contentlayer2**: 0.5.5 for MDX processing
+- **pliny**: 0.4.1 for blog utilities (search, analytics, comments)
+- **Tailwind CSS**: 4.1.17
+
+## Features Configuration
+
+Edit `data/siteMetadata.js` to configure:
+- **Search**: kbar (local search via JSON index)
+- **Comments**: Giscus (GitHub Discussions-based)
+- **Analytics**: Umami (configured via env vars)
+- **Newsletter**: Buttondown
+
+## Building and Deployment
+
+The build process:
+1. Contentlayer processes MDX files
+2. Next.js builds with webpack
+3. Post-build scripts generate RSS and copy assets
+4. Security headers are applied (CSP, HSTS, etc.)
+
+Environment variables control build output:
+- `EXPORT=true`: Static export mode
+- `BASE_PATH`: Base path for deployment
+- `UNOPTIMIZED=true`: Disable image optimization
+- `ANALYZE=true`: Enable bundle analyzer
+
+## Image Handling
+
+Next.js Image component is configured with remote patterns for:
+- GitHub avatars
+- Ideascale/Project Catalyst assets
+- Vercel blob storage
+- Picsum photos (placeholder images)
+
+SVG files are handled by `@svgr/webpack` for component imports.
+
+## TypeScript Configuration
+
+- Target: ES6
+- Module: ESNext with bundler resolution
+- Strict mode: Partially enabled (strict null checks on, but not fully strict)
+- JSX: react-jsx (automatic runtime)
