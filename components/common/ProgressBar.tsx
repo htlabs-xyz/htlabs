@@ -29,7 +29,7 @@ export default function ProgressBar() {
       style={{
         transform: `translateX(${progress - 100}%)`,
       }}
-      className="fixed left-0 top-0 z-10 h-1 w-full bg-primary-500 backdrop-blur-3xl transition-transform duration-75"
+      className="bg-primary-500 fixed top-0 left-0 z-10 h-1 w-full backdrop-blur-3xl transition-transform duration-75"
     />
   )
 }

@@ -44,12 +44,12 @@ export default async function PostLayout({
       <ScrollTopAndComment />
       <article>
         <div className="divide-y divide-gray-200 dark:divide-gray-700">
-          <header className="pb-6 pt-6">
+          <header className="pt-6 pb-6">
             <div className="space-y-1 text-center">
               <dl className="space-y-10">
                 <div>
                   <dt className="sr-only">Published on</dt>
-                  <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                  <dd className="text-base leading-6 font-medium text-gray-500 dark:text-gray-400">
                     <time dateTime={date} className="inline-flex items-center">
                       <FaRegCalendarAlt className="mr-1.5" />
                       {new Date(date).toDateString()}
@@ -63,7 +63,7 @@ export default async function PostLayout({
               <dl className="space-y-10">
                 <div className="flex justify-center gap-x-4">
                   <dt className="sr-only">Reading time</dt>
-                  <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                  <dd className="text-base leading-6 font-medium text-gray-500 dark:text-gray-400">
                     <span className="inline-flex items-center">
                       <FaRegHourglassHalf className="mr-1.5" />
                       {readingTime.text}
@@ -82,7 +82,7 @@ export default async function PostLayout({
             <dl className="pt-6 xl:pt-4">
               <dt className="sr-only">Author</dt>
               <dd>
-                <ul className="flex flex-wrap justify-center gap-4 sm:space-x-12 xl:block xl:space-x-0 xl:space-y-8">
+                <ul className="flex flex-wrap justify-center gap-4 sm:space-x-12 xl:block xl:space-y-8 xl:space-x-0">
                   {authorDetails.map((author) => {
                     if (!author) return null
                     return (
@@ -96,7 +96,7 @@ export default async function PostLayout({
                             className="h-10 w-10 rounded-full"
                           />
                         )}
-                        <dl className="whitespace-nowrap text-sm font-medium leading-5">
+                        <dl className="text-sm leading-5 font-medium whitespace-nowrap">
                           <dt className="sr-only">Name</dt>
                           <dd className="text-gray-900 dark:text-gray-100">{author.name}</dd>
                           <dt className="sr-only">Github</dt>
@@ -119,14 +119,14 @@ export default async function PostLayout({
             </dl>
           </header>
           <div className="divide-y divide-gray-200 dark:divide-gray-700">
-            <div className="divide-y divide-gray-200 dark:divide-gray-700 xl:col-span-3 xl:row-span-2 xl:pb-0">
-              <div className="prose max-w-none pb-8 pt-10 dark:prose-invert">{children}</div>
+            <div className="divide-y divide-gray-200 xl:col-span-3 xl:row-span-2 xl:pb-0 dark:divide-gray-700">
+              <div className="prose dark:prose-invert max-w-none pt-10 pb-8">{children}</div>
             </div>
             <footer className="pb-6">
-              <div className="divide-gray-200 text-sm font-medium leading-5 dark:divide-gray-700">
+              <div className="divide-gray-200 text-sm leading-5 font-medium dark:divide-gray-700">
                 {tags && (
                   <div className="py-4">
-                    <h2 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                    <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
                       Tags
                     </h2>
                     <div className="flex flex-wrap">
@@ -140,7 +140,7 @@ export default async function PostLayout({
                   <div className="flex justify-between py-4">
                     {prev && prev.path && (
                       <div>
-                        <h2 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                        <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
                           Previous Post
                         </h2>
                         <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
@@ -150,7 +150,7 @@ export default async function PostLayout({
                     )}
                     {next && next.path && (
                       <div>
-                        <h2 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                        <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
                           Next Post
                         </h2>
                         <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
@@ -173,7 +173,7 @@ export default async function PostLayout({
             </footer>
           </div>
           {siteMetadata.comments && (
-            <div className="pb-6 pt-6 text-center text-gray-700 dark:text-gray-300" id="comment">
+            <div className="pt-6 pb-6 text-center text-gray-700 dark:text-gray-300" id="comment">
               <Comments slug={slug} />
             </div>
           )}

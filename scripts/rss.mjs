@@ -3,7 +3,7 @@ import path from 'path'
 import { slug } from 'github-slugger'
 import { escape } from 'pliny/utils/htmlEscaper.js'
 import siteMetadata from '../data/siteMetadata.js'
-import tagData from '../app/tag-data.json' assert { type: 'json' }
+import tagData from '../app/tag-data.json'
 import { allPosts } from '../.contentlayer/generated/index.mjs'
 import { sortPosts } from 'pliny/utils/contentlayer.js'
 
@@ -56,6 +56,7 @@ async function generateRSS(config, allPosts, page = 'feed.xml') {
 
 const rss = () => {
   generateRSS(siteMetadata, allPosts)
+  // eslint-disable-next-line no-undef
   console.log('RSS feed generated...')
 }
 export default rss
