@@ -1,9 +1,9 @@
 import Image from 'next/image'
-import { Project } from '@/.contentlayer/generated'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { Card } from '@/components/ui/card'
 import Link from '@/components/ui/link'
-import { cn } from '@/utils'
+import { Project } from 'contentlayer/generated'
+import { cn } from 'utils'
 
 export default function ProjectCard({ project }: { project: Project }) {
   const { title, slug, description, images, link } = project
@@ -29,7 +29,7 @@ export default function ProjectCard({ project }: { project: Project }) {
       </div>
       <div className="flex grow flex-col justify-between space-y-6 pb-1 md:w-1/2 md:pb-0">
         <div className="space-y-4">
-          <h2 className="text-[1.75rem] font-semibold leading-8">
+          <h2 className="text-[1.75rem] leading-8 font-semibold">
             {href ? (
               <Link href={href} aria-label={`Link to ${title}`}>
                 {title}
@@ -58,7 +58,7 @@ export default function ProjectCard({ project }: { project: Project }) {
         {href && (
           <Link
             href={href}
-            className="text-base font-medium leading-6 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+            className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 text-base leading-6 font-medium"
             aria-label={`Link to ${title}`}
           >
             Show more &rarr;

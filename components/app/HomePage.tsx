@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 // import Link from '@/components/Link'
 // import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
@@ -32,11 +31,11 @@ export default function Home({ posts }) {
                 position: 'relative',
               }}
             />
-            <h1 className="mb-2 mt-16 text-3xl font-bold tracking-tighter md:text-7xl lg:text-5xl">
+            <h1 className="mt-16 mb-2 text-3xl font-bold tracking-tighter md:text-7xl lg:text-5xl">
               {siteMetadata.description}
             </h1>
             <br></br>
-            <p className="mx-auto  text-xl font-normal leading-relaxed text-gray-600 dark:text-gray-300 lg:w-2/3">
+            <p className="mx-auto text-xl leading-relaxed font-normal text-gray-600 lg:w-2/3 dark:text-gray-300">
               We specialize in researching and developing decentralized applications while
               leveraging blockchain solutions to address challenges and enhance the performance of
               real-world products.

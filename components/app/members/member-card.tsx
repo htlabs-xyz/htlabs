@@ -5,7 +5,7 @@ import { Member } from 'app/type'
 export default function MemberCard({ member }: { member: Member }) {
   const { name, github, avatar, company, website, location, email, bio, social } = member
   return (
-    <div className="flex flex-col items-start space-y-2 xl:grid xl:grid-cols-3 xl:gap-x-8 xl:space-y-0">
+    <div className="flex flex-col items-start space-y-2 xl:grid xl:grid-cols-3 xl:space-y-0 xl:gap-x-8">
       <div className="flex h-full items-center justify-center border-t-slate-600 xl:col-span-1">
         {avatar && (
           <Image
@@ -17,8 +17,8 @@ export default function MemberCard({ member }: { member: Member }) {
           />
         )}
       </div>
-      <div className="prose max-w-none pb-8 pt-8 dark:prose-invert xl:col-span-2">
-        <h3 className="text-2xl font-bold leading-8 tracking-tight">{name}</h3>
+      <div className="prose dark:prose-invert max-w-none pt-8 pb-8 xl:col-span-2">
+        <h3 className="text-2xl leading-8 font-bold tracking-tight">{name}</h3>
         <div className="h-full">{bio}</div>
         <div className="mt-2 text-gray-500 dark:text-gray-400">{company}</div>
         <div className="text-gray-500 dark:text-gray-400">{location}</div>
