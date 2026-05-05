@@ -1,0 +1,35 @@
+---
+import { getCollection } from 'astro:content';
+
+const faqs = await getCollection('faq');
+faqs.sort((a, b) => a.data.order - b.data.order);
+---
+
+<section class="py-24 px-6 md:px-12 max-w-4xl mx-auto relative z-20 border-t border-white/5">
+  <div class="text-center mb-16">
+    <div class="flex items-center gap-3 mb-4 justify-center">
+      <div class="w-2 h-2 rounded-full bg-orange-500"></div>
+      <span class="font-mono text-xs text-zinc-400 uppercase tracking-widest">FAQ</span>
+    </div>
+    <h2 class="text-3xl md:text-4xl tracking-tight font-medium text-white mb-4">Common questions.</h2>
+    <p class="text-sm md:text-base text-zinc-400 font-light text-balance leading-relaxed">Everything you need to know before getting started with HT Labs.</p>
+  </div>
+
+  <div class="space-y-4">
+    {faqs.map((faq) => (
+      <details class="tech-glass rounded-xl group [&>summary::-webkit-details-marker]:hidden">
+        <summary class="flex items-center justify-between cursor-pointer px-6 py-5 text-left">
+          <span class="font-mono text-sm text-zinc-200 pr-8">{faq.data.question}</span>
+          <iconify-icon
+            icon="solar:alt-arrow-right-linear"
+            style="stroke-width: 1.5"
+            class="text-zinc-500 text-sm flex-shrink-0 transition-transform duration-200 group-open:rotate-90"
+          ></iconify-icon>
+        </summary>
+        <div class="px-6 pb-6 pt-0 text-sm text-zinc-400 font-light leading-relaxed border-t border-white/5">
+          {faq.data.answer}
+        </div>
+      </details>
+    ))}
+  </div>
+</section>
