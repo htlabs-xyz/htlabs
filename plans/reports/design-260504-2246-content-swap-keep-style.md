@@ -71,7 +71,7 @@ src/content/portfolio/gym.mdx — featured project
 - Card pattern: `rounded-2xl bg-white/[0.02] border border-white/5`
 
 ### Team (6 cards, 3×2)
-- Vi Van Bảo (Biz Dev), Phung Tien Dũng (Tech Lead), Dang Quang Thanh (Software Architect), Nguyen Hong Son (AI Engineer), 2× Coming Soon
+- Vi Van Bảo (Biz Dev), Phung Tien Dũng (Tech Lead), Dang Quang Thanh (Software Engineer), Nguyen Hong Son (AI Engineer), 2× Coming Soon
 - Monogram avatars, mono role, social placeholders
 
 ### Partners (grayscale glass strip)

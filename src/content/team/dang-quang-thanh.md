@@ -1,6 +1,6 @@
 ---
 name: "Dang Quang Thanh"
-role: "Software Architect"
+role: "Software Engineer"
 initials: "DQ"
 linkedInUrl: null
 githubUrl: null

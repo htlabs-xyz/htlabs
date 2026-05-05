@@ -69,7 +69,7 @@ Intro: *"HT Labs delivers end-to-end AI solutions — infrastructure, agents, in
 |---|---|---|
 | 1 | Vi Van Bảo | Business Development |
 | 2 | Phung Tien Dũng | Tech Lead / Solution Architect |
-| 3 | Dang Quang Thanh | Software Architect |
+| 3 | Dang Quang Thanh | Software Engineer |
 | 4 | Nguyen Hong Son | AI Engineer |
 | 5 | Coming Soon | Data / MLOps Engineer |
 | 6 | Coming Soon | DevOps Engineer |
