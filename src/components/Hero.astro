@@ -1,3 +1,7 @@
+---
+import Header from './Header.astro';
+---
+
 <section class="relative w-full min-h-screen overflow-hidden border-b border-white/5">
   <div class="absolute inset-0 pointer-events-none grid-overlay z-0"></div>
 
@@ -6,19 +10,7 @@
   <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[60rem] h-[20rem] bg-orange-500/[0.04] blur-[120px] rounded-full z-0 pointer-events-none"></div>
 
   <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-6 md:py-10 min-h-screen flex flex-col">
-  <header class="relative z-20 flex justify-between items-center animate-fade-in opacity-0" style="animation-delay: 0.05s">
-    <div class="flex items-center gap-3">
-      <img src="/logo.png" alt="htlabs" class="w-7 h-7 object-contain" />
-      <span class="text-lg tracking-tight text-zinc-100 font-medium">htlabs</span>
-    </div>
-
-    <nav class="flex items-center gap-7">
-      <a href="#services" class="text-sm text-zinc-400 hover:text-zinc-100 transition-colors hidden sm:block">Services</a>
-      <a href="#team" class="text-sm text-zinc-400 hover:text-zinc-100 transition-colors hidden sm:block">Team</a>
-      <a href="#portfolio" class="text-sm text-zinc-400 hover:text-zinc-100 transition-colors hidden sm:block">Portfolio</a>
-      <a href="mailto:htlabs.xyz@gmail.com" class="text-sm px-4 py-1.5 bg-white text-black font-medium hover:bg-zinc-200 transition-colors rounded-full shadow-sm">Contact</a>
-    </nav>
-  </header>
+  <Header home={true} />
 
   <div class="relative z-20 flex-1 grid lg:grid-cols-12 gap-10 lg:gap-12 items-center mt-12 lg:mt-0">
     <div class="lg:col-span-7 animate-fade-in opacity-0" style="animation-delay: 0.15s">

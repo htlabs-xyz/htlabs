@@ -1,0 +1,61 @@
+---
+const stats = [
+  { target: 0, suffix: '+', label: 'Team members' },
+  { target: 0, suffix: '+', label: 'Projects delivered' },
+  { target: 0, suffix: '+', label: 'In-house IP products' },
+];
+---
+
+<section id="stats" class="py-24 px-6 md:px-12 max-w-7xl mx-auto relative z-20 border-t border-white/5">
+  <div class="text-center mb-16 max-w-2xl mx-auto">
+    <div class="flex items-center gap-3 mb-4 justify-center">
+      <div class="w-2 h-2 rounded-full bg-orange-500"></div>
+      <span class="font-mono text-xs text-zinc-400 uppercase tracking-widest">By the numbers</span>
+    </div>
+    <h2 class="text-3xl md:text-4xl tracking-tight font-medium text-white mb-4">A few things worth highlighting.</h2>
+    <p class="text-sm md:text-base text-zinc-400 font-light leading-relaxed">
+      Snapshot of where HT Labs stands today — small numbers, big focus on impact.
+    </p>
+  </div>
+
+  <!-- TODO: replace targets with real numbers when available -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    {stats.map((s) => (
+      <div class="p-10 rounded-2xl bg-white/[0.02] border border-white/5 text-center">
+        <div
+          class="counter text-5xl md:text-6xl font-medium tracking-tight text-white mb-3"
+          data-target={s.target}
+          data-suffix={s.suffix}
+        >0{s.suffix}</div>
+        <div class="text-sm text-zinc-400 font-light tracking-wide">{s.label}</div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<script>
+  const els = document.querySelectorAll<HTMLElement>('.counter');
+  const animate = (el: HTMLElement) => {
+    const target = Number(el.dataset.target || 0);
+    const suffix = el.dataset.suffix || '';
+    if (!target) { el.textContent = `0${suffix}`; return; }
+    const duration = 1500;
+    const start = performance.now();
+    const step = (now: number) => {
+      const t = Math.min(1, (now - start) / duration);
+      const value = Math.floor(t * target);
+      el.textContent = `${value}${suffix}`;
+      if (t < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        animate(e.target as HTMLElement);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.4 });
+  els.forEach((el) => io.observe(el));
+</script>

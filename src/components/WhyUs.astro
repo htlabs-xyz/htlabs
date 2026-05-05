@@ -1,0 +1,41 @@
+---
+const reasons = [
+  { title: '24/7 Engineering Support', desc: 'On-call response from senior engineers — never a generic helpdesk.' },
+  { title: 'Certified Specialists', desc: 'Cloud, ML, security — credentials backed by shipping production systems.' },
+  { title: 'On-site & Remote', desc: 'Embed with your team or operate fully remote — same quality bar.' },
+  { title: 'Transparent SLAs', desc: 'Clear timelines, clear ownership, clear escalation paths.' },
+];
+---
+
+<section id="why-us" class="py-24 px-6 md:px-12 max-w-7xl mx-auto relative z-20 border-t border-white/5">
+  <div class="grid md:grid-cols-2 gap-12 lg:gap-20 items-start">
+    <div>
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-2 h-2 rounded-full bg-orange-500"></div>
+        <span class="font-mono text-xs text-zinc-400 uppercase tracking-widest">Why Choose Us</span>
+      </div>
+      <h2 class="text-3xl md:text-4xl tracking-tight font-medium text-white mb-6 text-balance leading-tight">
+        We commit to high-quality IT and AI services.
+      </h2>
+      <p class="text-zinc-400 font-light leading-relaxed text-sm md:text-base mb-8">
+        Supporting our clients' growth is the foundational reason HT Labs is chosen as a long-term
+        IT partner. We work as an extension of your team — measurable results, no jargon.
+      </p>
+
+      <!-- TODO: replace with real success rate when available -->
+      <div class="p-6 rounded-2xl bg-white/[0.02] border border-orange-500/20">
+        <div class="text-5xl md:text-6xl font-medium tracking-tight text-orange-400 mb-2">0%</div>
+        <div class="text-sm text-zinc-400 font-light">Client retention rate — measured year over year.</div>
+      </div>
+    </div>
+
+    <div class="space-y-4">
+      {reasons.map((r) => (
+        <div class="p-6 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-white/10 transition-colors">
+          <h3 class="text-base font-medium text-white tracking-tight mb-2">{r.title}</h3>
+          <p class="text-sm text-zinc-400 font-light leading-relaxed">{r.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

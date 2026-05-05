@@ -56,10 +56,23 @@ const faqCollection = defineCollection({
   }),
 });
 
+const blogCollection = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/blog' }),
+  schema: z.object({
+    title: z.string(),
+    excerpt: z.string(),
+    author: z.string(),
+    date: z.coerce.date(),
+    coverImage: z.string().optional().nullable(),
+    isPlaceholder: z.boolean().default(false),
+  }),
+});
+
 export const collections = {
   team: teamCollection,
   services: serviceCollection,
   partners: partnerCollection,
   portfolio: portfolioCollection,
   faq: faqCollection,
+  blog: blogCollection,
 };

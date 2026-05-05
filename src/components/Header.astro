@@ -1,0 +1,19 @@
+---
+const { home = false } = Astro.props as { home?: boolean };
+const prefix = home ? '' : '/';
+---
+
+<header class="relative z-20 flex justify-between items-center animate-fade-in opacity-0" style="animation-delay: 0.05s">
+  <a href="/" class="flex items-center gap-3 hover:opacity-90 transition-opacity">
+    <img src="/logo.png" alt="htlabs" class="w-7 h-7 object-contain" />
+    <span class="text-lg tracking-tight text-zinc-100 font-medium">htlabs</span>
+  </a>
+
+  <nav class="flex items-center gap-7">
+    <a href={`${prefix}#services`} class="text-sm text-zinc-400 hover:text-zinc-100 transition-colors hidden sm:block">Services</a>
+    <a href={`${prefix}#team`} class="text-sm text-zinc-400 hover:text-zinc-100 transition-colors hidden sm:block">Team</a>
+    <a href={`${prefix}#portfolio`} class="text-sm text-zinc-400 hover:text-zinc-100 transition-colors hidden sm:block">Portfolio</a>
+    <a href="/blog" class="text-sm text-zinc-400 hover:text-zinc-100 transition-colors hidden sm:block">Blog</a>
+    <a href="mailto:htlabs.xyz@gmail.com" class="text-sm px-4 py-1.5 bg-white text-black font-medium hover:bg-zinc-200 transition-colors rounded-full shadow-sm">Contact</a>
+  </nav>
+</header>
