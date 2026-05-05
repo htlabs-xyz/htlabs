@@ -7,6 +7,7 @@ const teamCollection = defineCollection({
     name: z.string(),
     role: z.string(),
     initials: z.string().max(3),
+    photoUrl: z.string().optional().nullable(),
     linkedInUrl: z.string().url().optional().nullable(),
     githubUrl: z.string().url().optional().nullable(),
     isPlaceholder: z.boolean().default(false),
