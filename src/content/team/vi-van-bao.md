@@ -1,6 +1,6 @@
 ---
 name: "Vi Van Bảo"
-role: "Business Development"
+role: "Project Manager"
 initials: "VB"
 photoUrl: "/image/bao.jpg"
 linkedInUrl: null

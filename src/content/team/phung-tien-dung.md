@@ -1,6 +1,6 @@
 ---
 name: "Phung Tien Dũng"
-role: "Tech Lead / Solution Architect"
+role: "Tech Lead"
 initials: "PT"
 photoUrl: "/image/dung.jpg"
 linkedInUrl: null
