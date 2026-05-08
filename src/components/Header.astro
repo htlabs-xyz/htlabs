@@ -9,10 +9,16 @@ const prefix = home ? '' : '/';
   </a>
 
   <nav class="flex items-center gap-7">
-    <a href={`${prefix}#services`} class="text-sm text-zinc-400 hover:text-zinc-100 transition-colors hidden sm:block">Services</a>
-    <a href={`${prefix}#team`} class="text-sm text-zinc-400 hover:text-zinc-100 transition-colors hidden sm:block">Team</a>
-    <a href={`${prefix}#portfolio`} class="text-sm text-zinc-400 hover:text-zinc-100 transition-colors hidden sm:block">Portfolio</a>
-    <a href="/blog" class="text-sm text-zinc-400 hover:text-zinc-100 transition-colors hidden sm:block">Blog</a>
-    <a href="mailto:htlabs.xyz@gmail.com" class="text-sm px-4 py-1.5 bg-white text-black font-medium hover:bg-zinc-200 transition-colors rounded-full shadow-sm">Contact</a>
+    <a href={`${prefix}#services`} class="text-sm text-zinc-400 hover:text-zinc-100 transition-colors hidden sm:block" data-i18n="nav.services">Services</a>
+    <a href={`${prefix}#team`} class="text-sm text-zinc-400 hover:text-zinc-100 transition-colors hidden sm:block" data-i18n="nav.team">Team</a>
+    <a href={`${prefix}#portfolio`} class="text-sm text-zinc-400 hover:text-zinc-100 transition-colors hidden sm:block" data-i18n="nav.portfolio">Portfolio</a>
+    <a href="/blog" class="text-sm text-zinc-400 hover:text-zinc-100 transition-colors hidden sm:block" data-i18n="nav.blog">Blog</a>
+    <button
+      type="button"
+      data-i18n-toggle
+      aria-label="Switch language"
+      class="text-xs font-mono px-2.5 py-1.5 rounded-full border border-white/10 text-zinc-300 hover:text-white hover:border-white/20 transition-colors"
+    >VI</button>
+    <a href="mailto:htlabs.xyz@gmail.com" class="text-sm px-4 py-1.5 bg-white text-black font-medium hover:bg-zinc-200 transition-colors rounded-full shadow-sm" data-i18n="nav.contact">Contact</a>
   </nav>
 </header>

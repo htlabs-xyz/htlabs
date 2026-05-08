@@ -16,35 +16,35 @@ import Header from './Header.astro';
     <div class="lg:col-span-7 animate-fade-in opacity-0" style="animation-delay: 0.15s">
       <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.03] backdrop-blur-sm mb-8">
         <div class="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse"></div>
-        <span class="font-mono text-[11px] text-zinc-300 uppercase tracking-[0.18em]">HT Labs · Comprehensive AI</span>
+        <span class="font-mono text-[11px] text-zinc-300 uppercase tracking-[0.18em]" data-i18n="hero.badge">HT Labs · Comprehensive AI</span>
       </div>
 
       <h1 class="text-5xl md:text-7xl lg:text-[5.5rem] xl:text-[6.5rem] text-white leading-[0.95] tracking-tighter font-medium text-balance">
-        Build with
+        <span data-i18n="hero.title.build">Build with</span>
         <span class="relative inline-block">
-          <span class="bg-gradient-to-br from-orange-300 via-orange-500 to-amber-600 bg-clip-text text-transparent">intelligent</span>
+          <span class="bg-gradient-to-br from-orange-300 via-orange-500 to-amber-600 bg-clip-text text-transparent" data-i18n="hero.title.intelligent">intelligent</span>
         </span>
         <br />
-        systems,
-        <span class="text-zinc-600 italic font-light">end-to-end.</span>
+        <span data-i18n="hero.title.systems">systems,</span>
+        <span class="text-zinc-600 italic font-light" data-i18n="hero.title.endtoend">end-to-end.</span>
       </h1>
 
-      <p class="mt-8 max-w-xl text-base md:text-lg text-zinc-400 font-light leading-relaxed">
+      <p class="mt-8 max-w-xl text-base md:text-lg text-zinc-400 font-light leading-relaxed" data-i18n="hero.subtitle">
         From infrastructure to agents to integration — we deliver complete AI solutions for businesses ready to operate with intelligence.
       </p>
 
       <div class="mt-10 flex flex-wrap items-center gap-4">
         <a href="mailto:htlabs.xyz@gmail.com" class="group flex items-center gap-2 bg-white text-black px-5 py-3 rounded-full hover:bg-zinc-200 transition-all duration-200 font-medium text-sm shadow-lg shadow-white/5">
-          Start a project
+          <span data-i18n="hero.cta.start">Start a project</span>
           <iconify-icon icon="solar:arrow-right-linear" style="stroke-width: 1.5" class="text-base group-hover:translate-x-0.5 transition-transform"></iconify-icon>
         </a>
         <a href="#services" class="group flex items-center gap-2 px-5 py-3 rounded-full border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all duration-200 text-sm text-zinc-200">
-          Explore services
+          <span data-i18n="hero.cta.explore">Explore services</span>
           <iconify-icon icon="solar:arrow-down-linear" style="stroke-width: 1.5" class="text-base group-hover:translate-y-0.5 transition-transform"></iconify-icon>
         </a>
         <div class="flex items-center gap-2 px-3 py-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/5">
           <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div>
-          <span class="font-mono text-xs text-emerald-300 tracking-wide">Accepting Projects</span>
+          <span class="font-mono text-xs text-emerald-300 tracking-wide" data-i18n="hero.status.accepting">Accepting Projects</span>
         </div>
       </div>
     </div>
@@ -69,10 +69,10 @@ import Header from './Header.astro';
             </div>
             <div class="flex-1 min-w-0">
               <div class="flex items-center justify-between">
-                <span class="text-sm text-white font-medium">AI Chatbot</span>
-                <span class="font-mono text-[10px] text-emerald-400">● online</span>
+                <span class="text-sm text-white font-medium" data-i18n="hero.card.chatbot.title">AI Chatbot</span>
+                <span class="font-mono text-[10px] text-emerald-400" data-i18n="hero.card.online">● online</span>
               </div>
-              <span class="text-xs text-zinc-500">24/7 customer care · auto-routing</span>
+              <span class="text-xs text-zinc-500" data-i18n="hero.card.chatbot.desc">24/7 customer care · auto-routing</span>
             </div>
           </div>
 
@@ -82,10 +82,10 @@ import Header from './Header.astro';
             </div>
             <div class="flex-1 min-w-0">
               <div class="flex items-center justify-between">
-                <span class="text-sm text-white font-medium">Social Agents</span>
-                <span class="font-mono text-[10px] text-emerald-400">● online</span>
+                <span class="text-sm text-white font-medium" data-i18n="hero.card.social.title">Social Agents</span>
+                <span class="font-mono text-[10px] text-emerald-400" data-i18n="hero.card.online">● online</span>
               </div>
-              <span class="text-xs text-zinc-500">content · trends · engagement</span>
+              <span class="text-xs text-zinc-500" data-i18n="hero.card.social.desc">content · trends · engagement</span>
             </div>
           </div>
 
@@ -95,15 +95,15 @@ import Header from './Header.astro';
             </div>
             <div class="flex-1 min-w-0">
               <div class="flex items-center justify-between">
-                <span class="text-sm text-white font-medium">CRM & Analytics</span>
-                <span class="font-mono text-[10px] text-emerald-400">● online</span>
+                <span class="text-sm text-white font-medium" data-i18n="hero.card.crm.title">CRM & Analytics</span>
+                <span class="font-mono text-[10px] text-emerald-400" data-i18n="hero.card.online">● online</span>
               </div>
-              <span class="text-xs text-zinc-500">behavior · funnels · lifecycle</span>
+              <span class="text-xs text-zinc-500" data-i18n="hero.card.crm.desc">behavior · funnels · lifecycle</span>
             </div>
           </div>
 
           <div class="flex items-center justify-between pt-3 border-t border-white/5">
-            <span class="font-mono text-[10px] text-zinc-500 uppercase tracking-wider">uptime</span>
+            <span class="font-mono text-[10px] text-zinc-500 uppercase tracking-wider" data-i18n="hero.card.uptime">uptime</span>
             <div class="flex items-center gap-2">
               <div class="flex gap-0.5">
                 <div class="w-1 h-3 bg-emerald-500/80 rounded-sm"></div>
@@ -124,22 +124,22 @@ import Header from './Header.astro';
 
   <div class="relative z-20 mt-12 lg:mt-8 grid grid-cols-2 md:grid-cols-4 gap-px bg-white/5 border border-white/5 rounded-xl overflow-hidden animate-fade-in opacity-0" style="animation-delay: 0.5s">
     <div class="bg-zinc-950/80 backdrop-blur-sm p-5">
-      <div class="font-mono text-[10px] text-zinc-500 uppercase tracking-widest mb-2">Pillars</div>
-      <div class="text-2xl text-white font-medium tracking-tight">3 / Layers</div>
+      <div class="font-mono text-[10px] text-zinc-500 uppercase tracking-widest mb-2" data-i18n="hero.stat.pillars.label">Pillars</div>
+      <div class="text-2xl text-white font-medium tracking-tight" data-i18n="hero.stat.pillars.value">3 / Layers</div>
     </div>
     <div class="bg-zinc-950/80 backdrop-blur-sm p-5">
-      <div class="font-mono text-[10px] text-zinc-500 uppercase tracking-widest mb-2">Approach</div>
-      <div class="text-2xl text-white font-medium tracking-tight">End-to-end</div>
+      <div class="font-mono text-[10px] text-zinc-500 uppercase tracking-widest mb-2" data-i18n="hero.stat.approach.label">Approach</div>
+      <div class="text-2xl text-white font-medium tracking-tight" data-i18n="hero.stat.approach.value">End-to-end</div>
     </div>
     <div class="bg-zinc-950/80 backdrop-blur-sm p-5">
-      <div class="font-mono text-[10px] text-zinc-500 uppercase tracking-widest mb-2">Founded</div>
+      <div class="font-mono text-[10px] text-zinc-500 uppercase tracking-widest mb-2" data-i18n="hero.stat.founded.label">Founded</div>
       <div class="text-2xl text-white font-medium tracking-tight">2024</div>
     </div>
     <div class="bg-zinc-950/80 backdrop-blur-sm p-5">
-      <div class="font-mono text-[10px] text-zinc-500 uppercase tracking-widest mb-2">Status</div>
+      <div class="font-mono text-[10px] text-zinc-500 uppercase tracking-widest mb-2" data-i18n="hero.stat.status.label">Status</div>
       <div class="text-2xl text-white font-medium tracking-tight flex items-center gap-2">
         <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-        Available
+        <span data-i18n="hero.stat.status.value">Available</span>
       </div>
     </div>
   </div>

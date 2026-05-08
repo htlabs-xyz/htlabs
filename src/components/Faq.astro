@@ -9,24 +9,24 @@ faqs.sort((a, b) => a.data.order - b.data.order);
   <div class="text-center mb-16">
     <div class="flex items-center gap-3 mb-4 justify-center">
       <div class="w-2 h-2 rounded-full bg-orange-500"></div>
-      <span class="font-mono text-xs text-zinc-400 uppercase tracking-widest">FAQ</span>
+      <span class="font-mono text-xs text-zinc-400 uppercase tracking-widest" data-i18n="faq.eyebrow">FAQ</span>
     </div>
-    <h2 class="text-3xl md:text-4xl tracking-tight font-medium text-white mb-4">Common questions.</h2>
-    <p class="text-sm md:text-base text-zinc-400 font-light text-balance leading-relaxed">Everything you need to know before getting started with HT Labs.</p>
+    <h2 class="text-3xl md:text-4xl tracking-tight font-medium text-white mb-4" data-i18n="faq.title">Common questions.</h2>
+    <p class="text-sm md:text-base text-zinc-400 font-light text-balance leading-relaxed" data-i18n="faq.body">Everything you need to know before getting started with HT Labs.</p>
   </div>
 
   <div class="space-y-4">
     {faqs.map((faq) => (
       <details class="tech-glass rounded-xl group [&>summary::-webkit-details-marker]:hidden">
         <summary class="flex items-center justify-between cursor-pointer px-6 py-5 text-left">
-          <span class="font-mono text-sm text-zinc-200 pr-8">{faq.data.question}</span>
+          <span class="font-mono text-sm text-zinc-200 pr-8" data-i18n-vi={faq.data.question_vi}>{faq.data.question}</span>
           <iconify-icon
             icon="solar:alt-arrow-right-linear"
             style="stroke-width: 1.5"
             class="text-zinc-500 text-sm flex-shrink-0 transition-transform duration-200 group-open:rotate-90"
           ></iconify-icon>
         </summary>
-        <div class="px-6 pb-6 pt-0 text-sm text-zinc-400 font-light leading-relaxed border-t border-white/5">
+        <div class="px-6 pb-6 pt-0 text-sm text-zinc-400 font-light leading-relaxed border-t border-white/5" data-i18n-vi={faq.data.answer_vi}>
           {faq.data.answer}
         </div>
       </details>

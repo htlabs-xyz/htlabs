@@ -1,9 +1,9 @@
 ---
 const steps = [
-  { n: '01', title: 'Intake & Analysis', desc: 'Clarify your goals and define the real problem before proposing anything.' },
-  { n: '02', title: 'Solution Proposal', desc: 'Practical, applicable options with honest trade-offs and a recommendation.' },
-  { n: '03', title: 'Deployment', desc: 'Build and ship to production — fast iterations, working software each step.' },
-  { n: '04', title: 'Handover & Support', desc: 'Training, documentation, and continuous improvement after go-live.' },
+  { key: 's1', n: '01', title: 'Intake & Analysis', desc: 'Clarify your goals and define the real problem before proposing anything.' },
+  { key: 's2', n: '02', title: 'Solution Proposal', desc: 'Practical, applicable options with honest trade-offs and a recommendation.' },
+  { key: 's3', n: '03', title: 'Deployment', desc: 'Build and ship to production — fast iterations, working software each step.' },
+  { key: 's4', n: '04', title: 'Handover & Support', desc: 'Training, documentation, and continuous improvement after go-live.' },
 ];
 ---
 
@@ -11,10 +11,10 @@ const steps = [
   <div class="mb-16 max-w-2xl">
     <div class="flex items-center gap-3 mb-4">
       <div class="w-2 h-2 rounded-full bg-orange-500"></div>
-      <span class="font-mono text-xs text-zinc-400 uppercase tracking-widest">How We Work</span>
+      <span class="font-mono text-xs text-zinc-400 uppercase tracking-widest" data-i18n="process.eyebrow">How We Work</span>
     </div>
-    <h2 class="text-3xl md:text-4xl tracking-tight font-medium text-white mb-4">A simple, proven 4-step workflow.</h2>
-    <p class="text-sm md:text-base text-zinc-400 font-light leading-relaxed">
+    <h2 class="text-3xl md:text-4xl tracking-tight font-medium text-white mb-4" data-i18n="process.title">A simple, proven 4-step workflow.</h2>
+    <p class="text-sm md:text-base text-zinc-400 font-light leading-relaxed" data-i18n="process.body">
       We follow a streamlined process — designed to remove friction and deliver value early.
     </p>
   </div>
@@ -23,8 +23,8 @@ const steps = [
     {steps.map((s) => (
       <div class="p-8 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-white/10 transition-colors group">
         <div class="font-mono text-xs text-orange-400 tracking-widest mb-6">{s.n}</div>
-        <h3 class="text-lg font-medium text-white tracking-tight mb-2">{s.title}</h3>
-        <p class="text-sm text-zinc-400 font-light leading-relaxed">{s.desc}</p>
+        <h3 class="text-lg font-medium text-white tracking-tight mb-2" data-i18n={`process.${s.key}.title`}>{s.title}</h3>
+        <p class="text-sm text-zinc-400 font-light leading-relaxed" data-i18n={`process.${s.key}.desc`}>{s.desc}</p>
       </div>
     ))}
   </div>

@@ -19,7 +19,9 @@ const serviceCollection = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/services' }),
   schema: z.object({
     title: z.string(),
+    title_vi: z.string().optional(),
     description: z.string(),
+    description_vi: z.string().optional(),
     icon: z.string(),
     isFeatured: z.boolean().default(false),
     order: z.number().default(0),
@@ -39,9 +41,12 @@ const portfolioCollection = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/portfolio' }),
   schema: z.object({
     title: z.string(),
+    title_vi: z.string().optional(),
     description: z.string(),
+    description_vi: z.string().optional(),
     coverImage: z.string().optional().nullable(),
     tags: z.array(z.string()).default([]),
+    tags_vi: z.array(z.string()).optional(),
     clientName: z.string().optional().nullable(),
     isPlaceholder: z.boolean().default(false),
     order: z.number().default(0),
@@ -52,7 +57,9 @@ const faqCollection = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/faq' }),
   schema: z.object({
     question: z.string(),
+    question_vi: z.string().optional(),
     answer: z.string(),
+    answer_vi: z.string().optional(),
     order: z.number().default(0),
   }),
 });

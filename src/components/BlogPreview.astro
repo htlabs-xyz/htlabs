@@ -13,10 +13,10 @@ const fmt = (d: Date) =>
   <div class="mb-16 max-w-2xl">
     <div class="flex items-center gap-3 mb-4">
       <div class="w-2 h-2 rounded-full bg-orange-500"></div>
-      <span class="font-mono text-xs text-zinc-400 uppercase tracking-widest">Insights</span>
+      <span class="font-mono text-xs text-zinc-400 uppercase tracking-widest" data-i18n="blog.eyebrow">Insights</span>
     </div>
-    <h2 class="text-3xl md:text-4xl tracking-tight font-medium text-white mb-4">Latest articles and insights.</h2>
-    <p class="text-sm md:text-base text-zinc-400 font-light leading-relaxed">
+    <h2 class="text-3xl md:text-4xl tracking-tight font-medium text-white mb-4" data-i18n="blog.title">Latest articles and insights.</h2>
+    <p class="text-sm md:text-base text-zinc-400 font-light leading-relaxed" data-i18n="blog.body">
       Notes from the field — what we're learning, building, and shipping.
     </p>
   </div>
@@ -34,13 +34,13 @@ const fmt = (d: Date) =>
           {post.data.title}
         </h3>
         <p class="text-sm text-zinc-400 font-light leading-relaxed flex-grow">{post.data.excerpt}</p>
-        <span class="mt-6 text-xs font-mono text-orange-400 tracking-widest uppercase">Read more →</span>
+        <span class="mt-6 text-xs font-mono text-orange-400 tracking-widest uppercase" data-i18n="blog.readmore">Read more →</span>
       </a>
     ))}
   </div>
 
   <div class="mt-12">
-    <a href="/blog" class="text-sm font-mono text-zinc-300 hover:text-white tracking-widest uppercase">
+    <a href="/blog" class="text-sm font-mono text-zinc-300 hover:text-white tracking-widest uppercase" data-i18n="blog.viewall">
       View all posts →
     </a>
   </div>

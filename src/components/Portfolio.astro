@@ -11,10 +11,10 @@ const placeholders = projects.filter((p) => p.data.isPlaceholder);
   <div class="mb-16">
     <div class="flex items-center gap-3 mb-4">
       <div class="w-2 h-2 rounded-full bg-orange-500"></div>
-      <span class="font-mono text-xs text-zinc-400 uppercase tracking-widest">Portfolio</span>
+      <span class="font-mono text-xs text-zinc-400 uppercase tracking-widest" data-i18n="portfolio.eyebrow">Portfolio</span>
     </div>
-    <h2 class="text-2xl md:text-3xl tracking-tight font-medium text-white mb-4">Proof in production.</h2>
-    <p class="text-zinc-400 text-sm md:text-base max-w-xl font-light">Real systems deployed, running in production, delivering measurable results.</p>
+    <h2 class="text-2xl md:text-3xl tracking-tight font-medium text-white mb-4" data-i18n="portfolio.title">Proof in production.</h2>
+    <p class="text-zinc-400 text-sm md:text-base max-w-xl font-light" data-i18n="portfolio.body">Real systems deployed, running in production, delivering measurable results.</p>
   </div>
 
   {featured && (
@@ -30,12 +30,12 @@ const placeholders = projects.filter((p) => p.data.isPlaceholder);
 
       <div class="absolute bottom-8 left-8 right-8">
         <div class="flex items-center gap-2 mb-3">
-          {featured.data.tags?.map((tag) => (
-            <span class="text-xs font-mono text-orange-400 px-2 py-0.5 rounded-full bg-orange-500/10 border border-orange-500/20">{tag}</span>
+          {featured.data.tags?.map((tag, i) => (
+            <span class="text-xs font-mono text-orange-400 px-2 py-0.5 rounded-full bg-orange-500/10 border border-orange-500/20" data-i18n-vi={featured.data.tags_vi?.[i]}>{tag}</span>
           ))}
         </div>
-        <h3 class="text-2xl md:text-3xl font-medium text-white tracking-tight mb-2">{featured.data.title}</h3>
-        <p class="text-sm text-zinc-400 font-light max-w-xl">{featured.data.description}</p>
+        <h3 class="text-2xl md:text-3xl font-medium text-white tracking-tight mb-2" data-i18n-vi={featured.data.title_vi}>{featured.data.title}</h3>
+        <p class="text-sm text-zinc-400 font-light max-w-xl" data-i18n-vi={featured.data.description_vi}>{featured.data.description}</p>
       </div>
     </div>
   )}
@@ -44,7 +44,7 @@ const placeholders = projects.filter((p) => p.data.isPlaceholder);
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       {placeholders.map((project) => (
         <div class="p-12 rounded-2xl border border-white/5 bg-white/[0.01] flex items-center justify-center opacity-60">
-          <span class="text-sm font-mono text-zinc-600">Coming soon</span>
+          <span class="text-sm font-mono text-zinc-600" data-i18n="portfolio.coming">Coming soon</span>
         </div>
       ))}
     </div>

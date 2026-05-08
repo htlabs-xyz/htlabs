@@ -11,10 +11,10 @@ const others = services.filter((s) => !s.data.isFeatured);
   <div class="mb-16">
     <div class="flex items-center gap-3 mb-4">
       <div class="w-2 h-2 rounded-full bg-orange-500"></div>
-      <span class="font-mono text-xs text-zinc-400 uppercase tracking-widest">Our Services</span>
+      <span class="font-mono text-xs text-zinc-400 uppercase tracking-widest" data-i18n="services.eyebrow">Our Services</span>
     </div>
-    <h2 class="text-2xl md:text-3xl tracking-tight font-medium text-white mb-4">End-to-end AI capabilities.</h2>
-    <p class="text-zinc-400 text-sm md:text-base max-w-xl font-light">HT Labs delivers end-to-end AI solutions — infrastructure, agents, integration, and strategy — so businesses can adopt AI without juggling multiple vendors.</p>
+    <h2 class="text-2xl md:text-3xl tracking-tight font-medium text-white mb-4" data-i18n="services.title">End-to-end AI capabilities.</h2>
+    <p class="text-zinc-400 text-sm md:text-base max-w-xl font-light" data-i18n="services.body">HT Labs delivers end-to-end AI solutions — infrastructure, agents, integration, and strategy — so businesses can adopt AI without juggling multiple vendors.</p>
   </div>
 
   {featured && (
@@ -24,8 +24,8 @@ const others = services.filter((s) => !s.data.isFeatured);
           <iconify-icon icon={featured.data.icon} style="stroke-width: 1.5" class="text-2xl"></iconify-icon>
         </div>
         <div>
-          <h3 class="text-xl font-medium text-white tracking-tight mb-2">{featured.data.title}</h3>
-          <p class="text-sm text-zinc-400 font-light leading-relaxed">{featured.data.description}</p>
+          <h3 class="text-xl font-medium text-white tracking-tight mb-2" data-i18n-vi={featured.data.title_vi}>{featured.data.title}</h3>
+          <p class="text-sm text-zinc-400 font-light leading-relaxed" data-i18n-vi={featured.data.description_vi}>{featured.data.description}</p>
         </div>
       </div>
     </div>
@@ -37,8 +37,8 @@ const others = services.filter((s) => !s.data.isFeatured);
         <div class="w-10 h-10 rounded-lg border border-white/10 bg-white/5 flex items-center justify-center mb-8 text-zinc-300 group-hover:text-white transition-colors">
           <iconify-icon icon={service.data.icon} style="stroke-width: 1.5" class="text-xl"></iconify-icon>
         </div>
-        <h3 class="text-lg font-medium text-white tracking-tight mb-2">{service.data.title}</h3>
-        <p class="text-sm text-zinc-400 font-light leading-relaxed">{service.data.description}</p>
+        <h3 class="text-lg font-medium text-white tracking-tight mb-2" data-i18n-vi={service.data.title_vi}>{service.data.title}</h3>
+        <p class="text-sm text-zinc-400 font-light leading-relaxed" data-i18n-vi={service.data.description_vi}>{service.data.description}</p>
       </div>
     ))}
   </div>
