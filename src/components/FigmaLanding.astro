@@ -1,0 +1,332 @@
+---
+const aiTools = Array.from({ length: 8 }, (_, index) => ({
+  src: `/figma-assets/ai-tool-${String(index + 1).padStart(2, '0')}.png`,
+  alt: [
+    'Claude',
+    'OpenAI',
+    'Gemini',
+    'Meta AI',
+    'Grok',
+    'Mistral',
+    'DeepSeek',
+    'Qwen',
+  ][index],
+}));
+
+const capabilities = [
+  {
+    label: 'Agent chat',
+    title: 'Nền tảng AI Chatbot đa kênh',
+    body: 'Tự động hóa tư vấn, hỗ trợ chốt đơn 24/7 và tích hợp trên các kênh bán hàng hiện có.',
+    color: '#5DB8FF',
+    icon: 'solar:chat-round-dots-linear',
+  },
+  {
+    label: 'Agent workflow',
+    title: 'Trợ lý AI cho Mạng xã hội',
+    body: 'Thu thập dữ liệu, lên lịch nội dung, theo dõi xu hướng và tối ưu phản hồi cộng đồng.',
+    color: '#A9C7FF',
+    icon: 'solar:hashtag-square-linear',
+  },
+  {
+    label: 'CRM Agent',
+    title: 'Hệ thống CRM thông minh',
+    body: 'Kết hợp dữ liệu khách hàng, phân tích hành vi và tự động hóa chăm sóc theo vòng đời.',
+    color: '#45C09D',
+    icon: 'solar:chart-square-linear',
+  },
+  {
+    label: 'Digital human',
+    title: 'Livestream bán hàng tự động',
+    body: 'Tạo video trực tiếp, trả lời bình luận và giữ nhịp bán hàng xuyên suốt nhiều khung giờ.',
+    color: '#FFC199',
+    icon: 'solar:video-frame-linear',
+  },
+];
+
+const processSteps = [
+  {
+    title: 'Khảo sát và đánh giá thực trạng hệ thống dữ liệu hiện tại',
+    detail: 'Xác định dữ liệu, công cụ, điểm nghẽn và các ràng buộc vận hành trước khi thiết kế.',
+    color: '#B1FCFF',
+    className: 'lg:col-span-7',
+  },
+  {
+    title: 'Đề xuất và thiết kế mô hình AI tích hợp',
+    detail: 'Chọn kiến trúc phù hợp, xác định workflow, quyền truy cập và chỉ số đo hiệu quả.',
+    color: '#80DFFF',
+    className: 'lg:col-span-5',
+  },
+  {
+    title: 'Thử nghiệm, tinh chỉnh thuật toán và đào tạo đội ngũ vận hành',
+    detail: 'Chạy pilot nhanh, tinh chỉnh prompt, dữ liệu và quy trình trước khi mở rộng.',
+    color: '#90C9FB',
+    className: 'lg:col-span-5',
+  },
+  {
+    title: 'Bàn giao hệ thống, cung cấp tài liệu kỹ thuật và bảo trì định kỳ',
+    detail: 'Bàn giao rõ quyền sở hữu, tài liệu, hướng dẫn vận hành và lịch cải tiến định kỳ.',
+    color: '#B6BBFF',
+    className: 'lg:col-span-7',
+  },
+];
+
+const commitments = [
+  {
+    title: 'Hỗ trợ kỹ thuật 24/7',
+    body: 'Phản hồi trực tiếp trong vòng 24h từ kỹ sư cấp cao của HTLabs.',
+    color: '#AEB4FF',
+  },
+  {
+    title: 'Tại chỗ & Từ xa',
+    body: 'Làm việc trực tiếp tại doanh nghiệp hoặc từ xa cùng một chuẩn chất lượng.',
+    color: '#AEFFF1',
+  },
+  {
+    title: 'SLA minh bạch',
+    body: 'Tiến độ rõ ràng, trách nhiệm rõ ràng và quy trình xử lý rõ ràng.',
+    color: '#FFF3AE',
+  },
+];
+
+const consoleRows = [
+  ['Lead mới', 'Phân loại nhu cầu', '00:04'],
+  ['Tin nhắn Zalo', 'Soạn phản hồi', '00:11'],
+  ['Báo cáo CRM', 'Cập nhật pipeline', '00:18'],
+];
+---
+
+<main class="premium-page min-h-screen text-[#07111f]">
+  <header class="sticky top-4 z-40 mx-auto w-full max-w-[1220px] px-5 md:px-8">
+    <div class="flex min-h-[68px] items-center justify-between rounded-full border border-[#d8e6ee] bg-white/85 px-4 shadow-[0_18px_60px_rgba(0,62,96,0.10)] backdrop-blur-xl md:px-6">
+      <a href="/" aria-label="HTLabs home" class="shrink-0">
+        <img src="/figma-assets/htlabs-logo-header.svg" alt="HTLabs" class="h-8 w-auto md:h-10" />
+      </a>
+
+      <nav class="hidden items-center gap-8 text-[15px] font-semibold text-[#263342] md:flex lg:gap-12">
+        <a href="#capabilities" class="transition-colors hover:text-[#0054c1]">Sản phẩm</a>
+        <a href="#process" class="transition-colors hover:text-[#0054c1]">Quy trình</a>
+        <a href="#contact" class="transition-colors hover:text-[#0054c1]">Liên hệ</a>
+      </nav>
+
+      <div class="flex items-center gap-3 text-[14px] font-semibold md:gap-5 md:text-[15px]">
+        <a href="#trial" class="hidden text-[#263342] transition-colors hover:text-[#0054c1] sm:inline">Đăng nhập</a>
+        <a
+          href="mailto:htlabs.xyz@gmail.com"
+          class="min-h-11 rounded-full border border-[#0054c1] bg-white px-5 py-2.5 text-[#0054c1] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#0054c1] hover:text-white"
+        >
+          Đăng ký
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <section class="relative mx-auto grid w-full max-w-[1220px] gap-12 px-5 pb-24 pt-20 md:px-8 md:pb-32 md:pt-28 lg:grid-cols-[1.02fr_0.98fr] lg:items-center lg:pb-40 lg:pt-36">
+    <div class="relative z-10">
+      <div class="mb-7 inline-flex items-center gap-3 rounded-full border border-[#cce6ef] bg-white/70 px-4 py-2 text-[13px] font-semibold text-[#0b6f7c] shadow-sm">
+        <span class="size-2 rounded-full bg-[#18a785]"></span>
+        HTLabs AI Operations Studio
+      </div>
+      <h1 class="max-w-[760px] text-[48px] font-semibold leading-[1.02] text-balance md:text-[76px] lg:text-[88px]">
+        Giải Pháp <span class="figma-gradient-text">AI Toàn Diện</span> Cho Doanh Nghiệp
+      </h1>
+      <p class="mt-8 max-w-[660px] text-[18px] font-medium leading-[1.65] text-[#344154] md:text-[21px]">
+        Giải quyết bài toán tối ưu quy trình, nâng cao hiệu suất và giảm chi phí bằng các mô hình AI tự động hóa được thiết kế theo dữ liệu thật của doanh nghiệp.
+      </p>
+      <div class="mt-10 flex w-full flex-col items-stretch gap-4 sm:w-auto sm:flex-row sm:items-center">
+        <a href="mailto:htlabs.xyz@gmail.com" class="figma-gradient-bg flex min-h-[56px] items-center justify-center rounded-full px-8 text-[17px] font-bold text-white shadow-[0_16px_40px_rgba(0,84,193,0.25)] transition-transform duration-200 hover:-translate-y-0.5">
+          Đặt lịch tư vấn
+        </a>
+        <a href="#trial" class="flex min-h-[56px] items-center justify-center rounded-full border border-[#0054c1] bg-white/70 px-8 text-[17px] font-bold text-[#0054c1] shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#eef8ff]">
+          Đăng ký dùng thử
+        </a>
+      </div>
+    </div>
+
+    <div class="relative z-10">
+      <div class="workflow-console overflow-hidden rounded-[34px] border border-[#bdd9e6] bg-[#07111f] p-3 shadow-[0_32px_90px_rgba(0,54,96,0.22)]">
+        <div class="rounded-[26px] border border-white/10 bg-[linear-gradient(145deg,#0d1f32,#07111f)] p-5 text-white md:p-6">
+          <div class="flex items-center justify-between border-b border-white/10 pb-5">
+            <div>
+              <p class="text-[13px] font-semibold text-[#8fe7df]">Live automation</p>
+              <p class="mt-1 text-[26px] font-semibold leading-none">AI workflow board</p>
+            </div>
+            <div class="rounded-full bg-[#12334a] px-3 py-1.5 text-[12px] font-bold text-[#9effd7]">online</div>
+          </div>
+
+          <div class="mt-5 space-y-3">
+            {consoleRows.map(([source, action, time]) => (
+              <div class="grid grid-cols-[1fr_auto] gap-4 rounded-[18px] border border-white/10 bg-white/[0.055] p-4">
+                <div>
+                  <p class="text-[13px] font-semibold text-white/55">{source}</p>
+                  <p class="mt-1 text-[18px] font-semibold leading-tight">{action}</p>
+                </div>
+                <span class="self-start rounded-full bg-white/10 px-2.5 py-1 text-[12px] font-bold text-[#a8f8ff]">{time}</span>
+              </div>
+            ))}
+          </div>
+
+          <div class="mt-5 grid grid-cols-3 gap-3">
+            <div class="rounded-[18px] bg-[#5DB8FF] p-4 text-[#06121f]">
+              <p class="text-[12px] font-bold">Agents</p>
+              <p class="mt-2 text-[28px] font-bold leading-none">12</p>
+            </div>
+            <div class="rounded-[18px] bg-[#AEFFF1] p-4 text-[#06121f]">
+              <p class="text-[12px] font-bold">Tasks</p>
+              <p class="mt-2 text-[28px] font-bold leading-none">486</p>
+            </div>
+            <div class="rounded-[18px] bg-[#FFF3AE] p-4 text-[#06121f]">
+              <p class="text-[12px] font-bold">SLA</p>
+              <p class="mt-2 text-[28px] font-bold leading-none">24h</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="trial" class="mx-auto w-full max-w-[1120px] px-5 py-20 text-center md:px-8 md:py-28">
+    <p class="section-kicker mx-auto">Business prompt</p>
+    <h2 class="mx-auto mt-4 max-w-[830px] text-[36px] font-semibold leading-tight text-balance md:text-[56px]">
+      Bạn muốn AI giải quyết vấn đề gì?
+    </h2>
+    <p class="mx-auto mt-6 max-w-[760px] text-[18px] font-medium leading-[1.65] text-[#344154] md:text-[21px]">
+      Cung cấp mô hình và workflow hỗ trợ doanh nghiệp trong bán hàng, marketing, CRM và hơn thế nữa.
+    </p>
+
+    <label class="mx-auto mt-12 flex min-h-[92px] max-w-[970px] items-center gap-4 rounded-[32px] border border-[#b9cbd5] bg-white/85 px-5 text-left shadow-[0_22px_70px_rgba(7,17,31,0.09)] backdrop-blur md:min-h-[112px] md:px-8">
+      <span class="sr-only">Tìm kiếm giải pháp</span>
+      <iconify-icon icon="solar:magic-stick-3-linear" class="hidden text-3xl text-[#008683] sm:block"></iconify-icon>
+      <input
+        type="text"
+        placeholder="Tìm kiếm giải pháp cho...."
+        class="min-w-0 flex-1 bg-transparent text-[18px] font-semibold text-[#253142] outline-none placeholder:text-[#73808d] md:text-[23px]"
+      />
+      <button type="button" aria-label="Tìm kiếm" class="figma-gradient-bg flex size-12 shrink-0 items-center justify-center rounded-full text-white shadow-[0_14px_30px_rgba(0,84,193,0.24)] transition-transform hover:scale-105">
+        <iconify-icon icon="solar:arrow-right-linear" class="text-2xl"></iconify-icon>
+      </button>
+    </label>
+  </section>
+
+  <section class="mx-auto w-full max-w-[1120px] px-5 py-20 text-center md:px-8 md:py-28">
+    <p class="section-kicker mx-auto">AI stack</p>
+    <h2 class="mx-auto mt-4 max-w-[890px] text-[36px] font-semibold leading-tight text-balance md:text-[56px]">
+      Được vận hành bởi các công cụ AI hàng đầu thị trường.
+    </h2>
+    <p class="mx-auto mt-6 max-w-[850px] text-[18px] font-medium leading-[1.65] text-[#344154] md:text-[21px]">
+      Chúng tôi liên tục cập nhật và tích hợp các mô hình AI tiên tiến nhất để đem đến giải pháp hiệu quả, chính xác và tối ưu chi phí cho khách hàng.
+    </p>
+
+    <div class="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-4 md:gap-5">
+      {aiTools.map((tool) => (
+        <div class="group flex aspect-[1.45] items-center justify-center rounded-[26px] border border-[#bfd1dc] bg-white/78 p-7 shadow-[0_18px_50px_rgba(7,17,31,0.07)] transition-all duration-200 hover:-translate-y-1 hover:border-[#82b5cc] hover:bg-white md:rounded-[30px]">
+          <img src={tool.src} alt={tool.alt} loading="lazy" class="max-h-20 max-w-24 object-contain transition-transform duration-200 group-hover:scale-105 md:max-h-24 md:max-w-32" />
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section id="capabilities" class="mx-auto w-full max-w-[1220px] px-5 py-20 md:px-8 md:py-28">
+    <p class="section-kicker mx-auto">Core products</p>
+    <h2 class="mx-auto mt-4 max-w-[900px] text-center text-[36px] font-semibold leading-tight text-balance md:text-[56px]">
+      Nâng tầm doanh nghiệp với các giải pháp AI cốt lõi
+    </h2>
+
+    <div class="mt-14 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+      {capabilities.map((item) => (
+        <article class="solution-card group relative flex min-h-[460px] flex-col overflow-hidden rounded-[32px] p-7 text-[#06121f] shadow-[0_22px_60px_rgba(7,17,31,0.10)] transition-transform duration-200 hover:-translate-y-1 md:min-h-[540px]" style={`background:${item.color}`}>
+          <div class="absolute inset-x-0 bottom-0 h-28 bg-[linear-gradient(0deg,rgba(255,255,255,0.30),transparent)]"></div>
+          <div class="relative z-10 flex items-center justify-between">
+            <p class="text-[15px] font-bold">{item.label}</p>
+            <div class="flex size-12 items-center justify-center rounded-2xl bg-white/45">
+              <iconify-icon icon={item.icon} class="text-2xl"></iconify-icon>
+            </div>
+          </div>
+          <h3 class="relative z-10 mt-10 text-[34px] font-semibold leading-[1.05] md:text-[43px]">
+            {item.title}
+          </h3>
+          <p class="relative z-10 mt-auto pt-12 text-[19px] font-semibold leading-[1.38] md:text-[22px]">{item.body}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section id="process" class="mx-auto w-full max-w-[1220px] px-5 py-20 md:px-8 md:py-28">
+    <p class="section-kicker mx-auto">Deployment flow</p>
+    <h2 class="mx-auto mt-4 max-w-[940px] text-center text-[36px] font-semibold leading-tight text-balance md:text-[56px]">
+      Triển khai nhanh chóng và bảo mật cho từng mô hình doanh nghiệp
+    </h2>
+
+    <div class="mt-14 grid gap-4 lg:grid-cols-12">
+      {processSteps.map((step, index) => (
+        <article class={`${step.className} min-h-[230px] rounded-[32px] p-7 shadow-[0_18px_50px_rgba(7,17,31,0.08)] md:p-10`} style={`background:${step.color}`}>
+          <div class="flex h-full flex-col justify-between gap-10">
+            <span class="text-[15px] font-extrabold text-[#06121f]/55">{String(index + 1).padStart(2, '0')}</span>
+            <div>
+              <h3 class="max-w-[680px] text-[26px] font-semibold leading-[1.18] md:text-[38px]">
+                {step.title}
+              </h3>
+              <p class="mt-5 max-w-[620px] text-[16px] font-semibold leading-[1.55] text-[#06121f]/70 md:text-[18px]">{step.detail}</p>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="mx-auto w-full max-w-[1120px] px-5 py-20 text-center md:px-8 md:py-28">
+    <p class="section-kicker mx-auto">Service promise</p>
+    <h2 class="mx-auto mt-4 max-w-[920px] text-[36px] font-semibold leading-tight text-balance md:text-[56px]">
+      Cam kết dịch vụ AI và IT chất lượng cao
+    </h2>
+    <p class="mx-auto mt-6 max-w-[940px] text-[18px] font-medium leading-[1.65] text-[#344154] md:text-[21px]">
+      Đồng hành cùng sự phát triển của khách hàng là lý do HTLabs được chọn làm đối tác IT dài hạn. Chúng tôi đi cùng doanh nghiệp của bạn trên con đường chuyển đổi số toàn diện.
+    </p>
+
+    <div class="mt-14 grid gap-6 md:grid-cols-3">
+      {commitments.map((item) => (
+        <article class="min-h-[330px] rounded-[32px] p-8 text-left shadow-[0_18px_55px_rgba(7,17,31,0.08)] md:min-h-[390px]" style={`background:${item.color}`}>
+          <h3 class="text-[32px] font-semibold leading-[1.08] md:text-[42px]">{item.title}</h3>
+          <p class="mt-10 text-[18px] font-semibold leading-[1.45] text-[#06121f]/72 md:text-[21px]">{item.body}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section id="contact" class="mx-auto flex w-full max-w-[1120px] flex-col items-center px-5 py-24 text-center md:px-8 md:py-32">
+    <div class="w-full rounded-[38px] border border-[#c8dde7] bg-[#07111f] px-6 py-16 text-white shadow-[0_30px_90px_rgba(0,54,96,0.22)] md:px-12 md:py-20">
+      <p class="mx-auto mb-5 w-fit rounded-full border border-white/15 px-4 py-2 text-[13px] font-bold text-[#9effd7]">Ready when you are</p>
+      <h2 class="text-[36px] font-semibold leading-tight text-balance md:text-[58px]">
+        Bạn đang mong đợi điều gì?
+      </h2>
+      <a href="mailto:htlabs.xyz@gmail.com" class="figma-gradient-bg mx-auto mt-10 flex min-h-[62px] w-fit items-center justify-center rounded-full px-10 text-[18px] font-bold text-white shadow-[0_18px_44px_rgba(0,84,193,0.32)] transition-transform hover:-translate-y-0.5 md:px-16 md:text-[21px]">
+        Đặt lịch tư vấn miễn phí
+      </a>
+    </div>
+  </section>
+
+  <footer class="mx-auto w-full max-w-[1220px] px-5 pb-12 pt-12 md:px-8">
+    <div class="grid gap-12 border-t border-[#cfe0e9] pt-10 md:grid-cols-[1.2fr_1fr] md:items-start">
+      <div>
+        <img src="/figma-assets/htlabs-logo-footer.svg" alt="HTLabs" class="h-10 w-auto md:h-12" />
+        <p class="mt-7 max-w-[440px] text-[17px] font-semibold leading-[1.55] text-[#344154]">
+          Trí tuệ vận hành và tự động hoá quy trình. Chúng tôi loại bỏ thao tác thủ công trên toàn bộ hệ thống của bạn.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 gap-10 text-[16px] font-semibold">
+        <div class="space-y-4">
+          <h3 class="font-extrabold text-[#07111f]">Khám phá</h3>
+          <a href="#capabilities" class="block text-[#344154] hover:text-[#0054c1]">Dịch vụ</a>
+          <a href="#process" class="block text-[#344154] hover:text-[#0054c1]">Quy trình</a>
+          <a href="/blog" class="block text-[#344154] hover:text-[#0054c1]">Blog</a>
+        </div>
+        <div class="space-y-4">
+          <h3 class="font-extrabold text-[#07111f]">Công ty</h3>
+          <a href="/" class="block text-[#344154] hover:text-[#0054c1]">Về HTLabs</a>
+          <a href="#contact" class="block text-[#344154] hover:text-[#0054c1]">Liên hệ</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</main>

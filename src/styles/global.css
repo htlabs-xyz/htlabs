@@ -1,17 +1,113 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: 'Inter', sans-serif;
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
   --color-accent: #f97316;
 }
 
 :root {
   --accent: #f97316;
+  --figma-blue: #0054c1;
+  --figma-teal: #008683;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 .text-balance {
   text-wrap: balance;
+}
+
+.figma-gradient-text {
+  background: linear-gradient(90deg, var(--figma-blue), var(--figma-teal));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.figma-gradient-bg {
+  background: linear-gradient(90deg, var(--figma-blue), var(--figma-teal));
+}
+
+.premium-page {
+  background:
+    linear-gradient(115deg, rgba(0, 84, 193, 0.08), transparent 26%),
+    linear-gradient(245deg, rgba(0, 134, 131, 0.08), transparent 30%),
+    linear-gradient(rgba(7, 17, 31, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(7, 17, 31, 0.035) 1px, transparent 1px),
+    #f7fbfa;
+  background-size: auto, auto, 48px 48px, 48px 48px, auto;
+}
+
+.premium-page::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    repeating-linear-gradient(115deg, transparent 0 42px, rgba(0, 84, 193, 0.035) 42px 43px),
+    repeating-linear-gradient(65deg, transparent 0 56px, rgba(0, 134, 131, 0.03) 56px 57px);
+  mask-image: linear-gradient(to bottom, black, transparent 74%);
+}
+
+.premium-page > * {
+  position: relative;
+  z-index: 1;
+}
+
+.section-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #c8dde7;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  padding: 8px 14px;
+  color: #0b6f7c;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.section-kicker::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--figma-blue), var(--figma-teal));
+}
+
+.workflow-console {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.22)),
+    linear-gradient(90deg, rgba(0, 84, 193, 0.22), rgba(0, 134, 131, 0.18));
+}
+
+.solution-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.36), transparent 42%),
+    repeating-linear-gradient(120deg, transparent 0 22px, rgba(255, 255, 255, 0.16) 22px 23px);
+  opacity: 0.72;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* Minimalist Custom Slider */
