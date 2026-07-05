@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: 'Plus Jakarta Sans', sans-serif;
+  --font-sans: 'Be Vietnam Pro', sans-serif;
+  --font-display: 'Be Vietnam Pro', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
   --color-accent: #f97316;
 }
@@ -32,30 +33,29 @@ html {
 }
 
 .premium-page {
+  background: #ffffff;
+}
+
+.hero-canvas {
   background:
-    linear-gradient(115deg, rgba(0, 84, 193, 0.08), transparent 26%),
-    linear-gradient(245deg, rgba(0, 134, 131, 0.08), transparent 30%),
-    linear-gradient(rgba(7, 17, 31, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(7, 17, 31, 0.035) 1px, transparent 1px),
-    #f7fbfa;
-  background-size: auto, auto, 48px 48px, 48px 48px, auto;
+    linear-gradient(90deg, rgba(0, 84, 193, 0.05) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(0, 134, 131, 0.04) 1px, transparent 1px),
+    radial-gradient(circle at 50% 0%, rgba(0, 84, 193, 0.07), transparent 42%);
+  background-size: 56px 56px, 56px 56px, auto;
+  border-radius: 0 0 48px 48px;
 }
 
 .premium-page::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  background-image:
-    repeating-linear-gradient(115deg, transparent 0 42px, rgba(0, 84, 193, 0.035) 42px 43px),
-    repeating-linear-gradient(65deg, transparent 0 56px, rgba(0, 134, 131, 0.03) 56px 57px);
-  mask-image: linear-gradient(to bottom, black, transparent 74%);
+  content: none;
 }
 
 .premium-page > * {
   position: relative;
   z-index: 1;
+}
+
+.premium-page::after {
+  content: none;
 }
 
 .section-kicker {
@@ -79,6 +79,14 @@ html {
   background: linear-gradient(90deg, var(--figma-blue), var(--figma-teal));
 }
 
+.tool-marquee {
+  animation: toolMarquee 34s linear infinite;
+}
+
+.tool-marquee:hover {
+  animation-play-state: paused;
+}
+
 .workflow-console {
   background:
     linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.22)),
@@ -93,6 +101,22 @@ html {
     linear-gradient(135deg, rgba(255, 255, 255, 0.36), transparent 42%),
     repeating-linear-gradient(120deg, transparent 0 22px, rgba(255, 255, 255, 0.16) 22px 23px);
   opacity: 0.72;
+}
+
+.taste-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.taste-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.28), transparent 42%),
+    repeating-linear-gradient(120deg, transparent 0 18px, rgba(255, 255, 255, 0.16) 18px 19px);
+  opacity: 0.75;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -178,6 +202,11 @@ input[type=range]:focus {
 }
 .animate-flow {
   animation: flow 1s linear infinite;
+}
+
+@keyframes toolMarquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 /* Refined Pre-footer background */
