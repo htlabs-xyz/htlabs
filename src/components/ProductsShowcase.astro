@@ -114,9 +114,13 @@ const products: Product[] = [
     <div class="mt-14 grid gap-7 md:grid-cols-2">
       {products.map((product) => (
         <article class="product-card overflow-hidden rounded-[30px] border border-black/10 bg-white shadow-[0_20px_54px_rgba(0,0,0,0.07)]">
-          <a href={product.href} target={product.href.startsWith('http') ? '_blank' : undefined} rel={product.href.startsWith('http') ? 'noreferrer' : undefined} aria-label={product.cta} class="group block overflow-hidden bg-[#eef3f8] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0054c1]">
+          <button type="button" data-product-preview data-image={product.cover} data-alt={product.coverAlt} data-title={product.name} aria-haspopup="dialog" aria-label={`Xem ảnh ${product.name}`} class="group relative block w-full cursor-zoom-in overflow-hidden bg-[#eef3f8] text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0054c1]">
             <img src={product.cover} alt={product.coverAlt} width="1200" height="750" loading="lazy" class="aspect-[16/10] w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]" />
-          </a>
+            <span class="absolute right-4 top-4 inline-flex items-center gap-2 rounded-full bg-black/70 px-3 py-2 text-[12px] font-bold text-white opacity-0 backdrop-blur-sm transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
+              <iconify-icon icon="solar:magnifer-zoom-in-linear" aria-hidden="true" class="text-lg"></iconify-icon>
+              Phóng to
+            </span>
+          </button>
           <div class="p-6 md:p-8">
             <div class="flex flex-wrap items-center justify-between gap-3">
               <div class="flex flex-wrap items-center gap-2">
@@ -143,6 +147,19 @@ const products: Product[] = [
     </div>
   </section>
 
+  <dialog id="product-preview-dialog" aria-labelledby="product-preview-title" class="preview-dialog m-auto w-[calc(100%-2rem)] max-w-[1320px] bg-transparent p-0">
+    <div class="overflow-hidden rounded-[24px] bg-white shadow-2xl">
+      <div class="flex min-h-16 items-center justify-between gap-4 border-b border-black/10 px-5 py-3 md:px-6">
+        <h2 id="product-preview-title" class="text-[16px] font-bold leading-tight md:text-[18px]"></h2>
+        <button type="button" data-preview-close aria-label="Đóng ảnh xem trước" class="grid size-11 shrink-0 place-items-center rounded-full border border-black/10 text-black transition-colors hover:bg-black hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0054c1]">
+          <iconify-icon icon="solar:close-circle-linear" aria-hidden="true" class="text-2xl"></iconify-icon>
+        </button>
+      </div>
+      <div class="grid max-h-[calc(100vh-8rem)] place-items-center overflow-auto bg-[#eef3f8] p-2 md:p-4">
+        <img data-preview-image alt="" class="max-h-[calc(100vh-10rem)] w-auto max-w-full rounded-xl object-contain" />
+      </div>
+    </div>
+  </dialog>
 
   <footer class="mx-auto w-full max-w-[1220px] px-5 pb-12 pt-10 md:px-8 md:pb-16 md:pt-14">
     <div class="grid gap-10 border-t border-black/10 pt-10 md:grid-cols-[1fr_auto] md:items-end">
@@ -162,7 +179,45 @@ const products: Product[] = [
   </footer>
 </main>
 
+<script>
+  const dialog = document.querySelector('#product-preview-dialog');
+  const previewImage = dialog?.querySelector('[data-preview-image]');
+  const previewTitle = dialog?.querySelector('#product-preview-title');
+  const closeButton = dialog?.querySelector('[data-preview-close]');
+  let activeTrigger: HTMLElement | null = null;
+
+  if (dialog instanceof HTMLDialogElement && previewImage instanceof HTMLImageElement && previewTitle) {
+    document.querySelectorAll<HTMLElement>('[data-product-preview]').forEach((trigger) => {
+      trigger.addEventListener('click', () => {
+        activeTrigger = trigger;
+        previewImage.src = trigger.dataset.image ?? '';
+        previewImage.alt = trigger.dataset.alt ?? '';
+        previewTitle.textContent = trigger.dataset.title ?? '';
+        dialog.showModal();
+      });
+    });
+
+    closeButton?.addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+    dialog.addEventListener('close', () => {
+      activeTrigger?.focus();
+      activeTrigger = null;
+    });
+  }
+</script>
+
 <style>
+
+  .preview-dialog {
+    border: 0;
+  }
+
+  .preview-dialog::backdrop {
+    background: rgba(2, 6, 23, 0.82);
+    backdrop-filter: blur(8px);
+  }
 
   .product-card {
     transition: transform 220ms ease, box-shadow 220ms ease;
