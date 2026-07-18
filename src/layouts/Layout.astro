@@ -1,6 +1,9 @@
 ---
 import '../styles/global.css';
-const { title = 'HTLabs — Giải Pháp AI Toàn Diện' } = Astro.props;
+const {
+  title = 'HTLabs — Giải Pháp AI Toàn Diện',
+  description = 'HTLabs cung cấp giải pháp AI toàn diện cho doanh nghiệp: chatbot đa kênh, workflow agent, CRM thông minh và triển khai bảo mật.',
+} = Astro.props;
 ---
 <!doctype html>
 <html lang="vi">
@@ -10,7 +13,7 @@ const { title = 'HTLabs — Giải Pháp AI Toàn Diện' } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" href="/logo.png" />
-    <meta name="description" content="HTLabs cung cấp giải pháp AI toàn diện cho doanh nghiệp: chatbot đa kênh, workflow agent, CRM thông minh và triển khai bảo mật." />
+    <meta name="description" content={description} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" />

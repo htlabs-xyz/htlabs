@@ -1,0 +1,41 @@
+---
+interface Props {
+  home?: boolean;
+  currentPage?: 'home' | 'products';
+}
+
+const { home = false, currentPage = 'home' } = Astro.props;
+const productsHref = home ? '#capabilities' : '/#capabilities';
+const processHref = home ? '#process' : '/#process';
+const contactHref = home ? '#contact' : '/#contact';
+---
+
+<header class="sticky top-0 z-40 mx-auto w-full max-w-[1220px] px-4 py-4 md:px-8 md:py-7">
+  <div class="grid min-h-[62px] grid-cols-[1fr_auto] items-center rounded-full border border-black/10 bg-white/92 px-4 shadow-[0_18px_60px_rgba(0,84,193,0.08)] backdrop-blur md:grid-cols-[1fr_auto_1fr] md:px-6">
+    <a href="/" aria-label="Về trang chủ HTLabs" class="justify-self-start rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0054c1]">
+      <img src="/figma-assets/htlabs-logo-header.svg" alt="HTLabs" class="h-auto w-[132px] sm:w-[168px] md:w-[196px]" />
+    </a>
+
+    <nav aria-label="Điều hướng chính" class="hidden items-center gap-9 text-[15px] font-medium text-black/82 md:flex lg:gap-12">
+      <a href={productsHref} class="transition-colors hover:text-[#0054c1] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0054c1]">Sản phẩm</a>
+      <a
+        href="/products"
+        aria-current={currentPage === 'products' ? 'page' : undefined}
+        class:list={[
+          'transition-colors hover:text-[#0054c1] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0054c1]',
+          currentPage === 'products' && 'font-semibold text-[#0054c1]',
+        ]}
+      >Dự án</a>
+      <a href={processHref} class="transition-colors hover:text-[#0054c1] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0054c1]">Quy trình</a>
+      <a href={contactHref} class="transition-colors hover:text-[#0054c1] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0054c1]">Liên hệ</a>
+    </nav>
+
+    <a
+      href="mailto:htlabs.xyz@gmail.com"
+      class="inline-flex min-h-10 justify-self-end items-center justify-center whitespace-nowrap rounded-full border-2 border-[#0054c1] bg-white px-4 text-[14px] font-medium text-[#0054c1] transition-colors hover:bg-[#0054c1] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0054c1] md:px-5 md:text-[15px]"
+    >
+      <span class="sm:hidden">Liên hệ</span>
+      <span class="hidden sm:inline">Trao đổi dự án</span>
+    </a>
+  </div>
+</header>

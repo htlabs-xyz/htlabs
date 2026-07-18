@@ -1,4 +1,6 @@
 ---
+import SiteHeader from './SiteHeader.astro';
+
 const aiTools = Array.from({ length: 8 }, (_, index) => ({
   src: `/figma-assets/ai-tool-${String(index + 1).padStart(2, '0')}.png`,
   alt: [
@@ -83,29 +85,7 @@ const commitments = [
 ---
 
 <main class="premium-page min-h-screen w-full overflow-x-hidden bg-white text-black">
-  <header class="sticky top-0 z-40 mx-auto w-full max-w-[1220px] px-4 py-4 md:px-8 md:py-7">
-    <div class="flex min-h-[62px] items-center justify-between rounded-full border border-black/10 bg-white/92 px-4 shadow-[0_18px_60px_rgba(0,84,193,0.08)] backdrop-blur md:px-6">
-    <a href="/" aria-label="HTLabs home" class="shrink-0">
-      <img src="/figma-assets/htlabs-logo-header.svg" alt="HTLabs" class="h-auto w-[168px] md:w-[196px]" />
-    </a>
-
-    <nav class="hidden items-center gap-10 text-[15px] font-medium text-black/82 md:flex lg:gap-14">
-      <a href="#capabilities" class="hover:text-[#0054c1]">Sản phẩm</a>
-      <a href="#pricing" class="hover:text-[#0054c1]">Bảng giá</a>
-      <a href="#contact" class="hover:text-[#0054c1]">Liên hệ</a>
-    </nav>
-
-    <div class="flex items-center gap-4 text-[14px] font-medium md:text-[15px]">
-      <a href="#login" class="hidden hover:text-[#0054c1] sm:inline">Đăng nhập</a>
-      <a
-        href="mailto:htlabs.xyz@gmail.com"
-        class="inline-flex min-h-10 shrink-0 items-center justify-center whitespace-nowrap rounded-full border-2 border-[#0054c1] bg-white px-4 text-[#0054c1] transition-colors hover:bg-[#0054c1] hover:text-white md:px-5"
-      >
-        Đăng ký
-      </a>
-    </div>
-    </div>
-  </header>
+  <SiteHeader home currentPage="home" />
 
   <section class="hero-canvas mx-auto flex w-full max-w-[1220px] flex-col items-center px-5 pb-24 pt-24 text-center md:px-8 md:pb-36 md:pt-32">
     <p class="mb-8 rounded-full border border-black/10 bg-white px-4 py-2 text-[13px] font-semibold text-[#006f77] shadow-sm">
@@ -122,13 +102,13 @@ const commitments = [
       <a href="mailto:htlabs.xyz@gmail.com" class="figma-gradient-bg inline-flex min-h-[54px] items-center justify-center rounded-full px-8 text-[16px] font-semibold text-white shadow-[0_18px_44px_rgba(0,84,193,0.22)] transition-transform hover:-translate-y-0.5 md:min-h-[60px] md:px-10 md:text-[18px]">
         Đặt lịch tư vấn
       </a>
-      <a href="#trial" class="inline-flex min-h-[54px] items-center justify-center rounded-full border-2 border-[#0054c1] bg-white px-8 text-[16px] font-semibold text-[#0054c1] shadow-[0_14px_36px_rgba(0,84,193,0.08)] transition-all hover:-translate-y-0.5 hover:bg-[#f4f8ff] md:min-h-[60px] md:px-10 md:text-[18px]">
-        Đăng ký dùng thử
+      <a href="#capabilities" class="inline-flex min-h-[54px] items-center justify-center rounded-full border-2 border-[#0054c1] bg-white px-8 text-[16px] font-semibold text-[#0054c1] shadow-[0_14px_36px_rgba(0,84,193,0.08)] transition-all hover:-translate-y-0.5 hover:bg-[#f4f8ff] md:min-h-[60px] md:px-10 md:text-[18px]">
+        Khám phá sản phẩm
       </a>
     </div>
   </section>
 
-  <section id="trial" class="mx-auto flex w-full max-w-[1080px] flex-col items-center px-5 py-20 text-center md:px-8 md:py-28">
+  <section id="discovery" class="mx-auto flex w-full max-w-[1080px] flex-col items-center px-5 py-20 text-center md:px-8 md:py-28">
     <h2 class="max-w-[900px] text-[32px] font-semibold leading-[1.18] md:text-[52px]">
       Bạn muốn AI giải quyết vấn đề gì?
     </h2>
@@ -235,7 +215,7 @@ const commitments = [
       <div class="grid grid-cols-2 gap-x-16 gap-y-4 text-[15px] font-medium text-black md:gap-x-28 md:text-[17px]">
         <h3 class="font-bold">Khám phá</h3>
         <h3 class="font-bold">Công ty</h3>
-        <a href="#capabilities" class="hover:text-[#0054c1]">Dịch vụ</a>
+        <a href="/products" class="hover:text-[#0054c1]">Dự án</a>
         <a href="/" class="hover:text-[#0054c1]">Về HTLabs</a>
         <a href="#process" class="hover:text-[#0054c1]">Quy trình</a>
         <a href="#contact" class="hover:text-[#0054c1]">Liên hệ</a>
