@@ -121,9 +121,11 @@ const commitments = [
       <input
         type="text"
         placeholder="Tìm kiếm giải pháp cho...."
-        class="min-w-0 flex-1 bg-transparent text-[18px] font-medium text-black outline-none placeholder:text-[#62646c] md:text-[22px]"
+        disabled
+        aria-disabled="true"
+        class="min-w-0 flex-1 cursor-not-allowed bg-transparent text-[18px] font-medium text-black outline-none placeholder:text-[#62646c] disabled:opacity-60 md:text-[22px]"
       />
-      <button type="button" aria-label="Tìm kiếm" class="figma-gradient-bg flex size-11 shrink-0 items-center justify-center rounded-full text-white shadow-[0_12px_28px_rgba(0,134,131,0.22)] transition-transform hover:scale-105 md:size-13">
+      <button type="button" aria-label="Tìm kiếm — tạm thời chưa khả dụng" disabled aria-disabled="true" class="figma-gradient-bg flex size-11 shrink-0 cursor-not-allowed items-center justify-center rounded-full text-white opacity-50 shadow-[0_12px_28px_rgba(0,134,131,0.22)] md:size-13">
         <iconify-icon icon="solar:arrow-right-linear" class="text-2xl"></iconify-icon>
       </button>
     </label>
