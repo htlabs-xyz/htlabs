@@ -1,0 +1,25 @@
+{
+  "agent_key": "htlabs-consultant",
+  "display_name": "HTLabs Consultant",
+  "frontmatter": "Tư vấn tuyến đầu HTLabs bằng tiếng Việt hoặc tiếng Anh, chỉ dựa trên nguồn đã duyệt.",
+  "provider": "__GOCLAW_PROVIDER__",
+  "model": "__GOCLAW_MODEL__",
+  "agent_type": "predefined",
+  "status": "inactive",
+  "max_tool_iterations": 1,
+  "tools_config": {
+    "profile": "minimal",
+    "deny": ["session_status"]
+  },
+  "memory_config": {
+    "enabled": false
+  },
+  "sandbox_config": {
+    "mode": "off"
+  },
+  "self_evolve": false,
+  "skill_evolve": false,
+  "other_config": {
+    "allow_image_generation": false
+  }
+}

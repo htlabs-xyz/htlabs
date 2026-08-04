@@ -1,0 +1,11 @@
+{
+  "repository": "https://github.com/nextlevelbuilder/goclaw.git",
+  "release": "v3.14.0",
+  "commit": "2f3d68e806c11a20b59b0591bca75410ed1237f7",
+  "tree": "101a21be02532df0b5229c24484a144a43d62997",
+  "source_archive": "https://github.com/nextlevelbuilder/goclaw/archive/refs/tags/v3.14.0.tar.gz",
+  "source_archive_sha256": "033b89c1aadfc194a38644d32966001686afe3c5c05f6ea9f34c2e06d87da93e",
+  "license": "CC-BY-NC-4.0",
+  "license_sha256": "72fff4e90fd3e283656938360d132b26068ecfcf71005710096d595ef2ada232",
+  "verified_at": "2026-08-04"
+}

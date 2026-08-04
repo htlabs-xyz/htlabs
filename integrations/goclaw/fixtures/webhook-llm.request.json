@@ -1,0 +1,8 @@
+{
+  "input": "Doanh nghiệp tôi đang nhập dữ liệu thủ công, HTLabs có thể hỗ trợ gì?",
+  "session_key": "contract-fixture-session",
+  "mode": "sync",
+  "metadata": {
+    "fixture": "htlabs-goclaw-v1"
+  }
+}

@@ -1,5 +1,10 @@
 ---
 import SiteHeader from './SiteHeader.astro';
+import { isSolutionChatPubliclyEnabled } from '../lib/solution/client';
+
+const solutionChatEnabled = isSolutionChatPubliclyEnabled(
+  import.meta.env.PUBLIC_SOLUTION_CHAT_ENABLED,
+);
 
 const aiTools = Array.from({ length: 8 }, (_, index) => ({
   src: `/figma-assets/ai-tool-${String(index + 1).padStart(2, '0')}.png`,
@@ -116,19 +121,36 @@ const commitments = [
       Cung cấp mô hình, workflow đơn giản hỗ trợ doanh nghiệp trong lĩnh vực bán hàng, marketing, CRM và hơn thế nữa...
     </p>
 
-    <label class="mt-12 flex min-h-[96px] w-full items-center gap-4 rounded-[28px] border border-black bg-[#f4f3f1] px-6 text-left shadow-[0_22px_60px_rgba(0,0,0,0.06)] md:min-h-[128px] md:rounded-[34px] md:px-10">
-      <span class="sr-only">Tìm kiếm giải pháp</span>
-      <input
-        type="text"
-        placeholder="Tìm kiếm giải pháp cho...."
-        disabled
-        aria-disabled="true"
-        class="min-w-0 flex-1 cursor-not-allowed bg-transparent text-[18px] font-medium text-black outline-none placeholder:text-[#62646c] disabled:opacity-60 md:text-[22px]"
-      />
-      <button type="button" aria-label="Tìm kiếm — tạm thời chưa khả dụng" disabled aria-disabled="true" class="figma-gradient-bg flex size-11 shrink-0 cursor-not-allowed items-center justify-center rounded-full text-white opacity-50 shadow-[0_12px_28px_rgba(0,134,131,0.22)] md:size-13">
-        <iconify-icon icon="solar:arrow-right-linear" class="text-2xl"></iconify-icon>
-      </button>
-    </label>
+    <form id="solution-discovery-form" class="mt-12 w-full" data-enabled={String(solutionChatEnabled)} novalidate>
+      <div class="flex min-h-[96px] w-full items-center gap-4 rounded-[28px] border border-black bg-[#f4f3f1] px-6 text-left shadow-[0_22px_60px_rgba(0,0,0,0.06)] transition-colors focus-within:border-[#0054c1] focus-within:ring-4 focus-within:ring-[#0054c1]/10 md:min-h-[128px] md:rounded-[34px] md:px-10">
+        <label for="solution-discovery-input" class="sr-only">Mô tả vấn đề bạn muốn AI giải quyết</label>
+        <input
+          id="solution-discovery-input"
+          name="solution"
+          type="text"
+          placeholder="Tìm kiếm giải pháp cho...."
+          required
+          maxlength="2000"
+          autocomplete="off"
+          disabled={!solutionChatEnabled}
+          aria-disabled={!solutionChatEnabled ? 'true' : undefined}
+          aria-describedby="solution-discovery-help solution-discovery-error"
+          class:list={[
+            'min-w-0 flex-1 bg-transparent text-[18px] font-medium text-black outline-none placeholder:text-[#62646c] md:text-[22px]',
+            !solutionChatEnabled && 'cursor-not-allowed opacity-60',
+          ]}
+        />
+        <button type="submit" aria-label={solutionChatEnabled ? 'Tìm giải pháp phù hợp' : 'Tìm giải pháp — tạm thời chưa khả dụng'} disabled={!solutionChatEnabled} aria-disabled={!solutionChatEnabled ? 'true' : undefined} class="figma-gradient-bg flex size-11 shrink-0 items-center justify-center rounded-full text-white shadow-[0_12px_28px_rgba(0,134,131,0.22)] transition-transform hover:scale-105 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0054c1] disabled:cursor-not-allowed disabled:opacity-50 md:size-13">
+          <iconify-icon icon="solar:arrow-right-linear" class="text-2xl"></iconify-icon>
+        </button>
+      </div>
+      <p id="solution-discovery-help" class="mt-3 text-sm font-medium text-black/60">
+        {solutionChatEnabled
+          ? 'Không cần đăng nhập. Nội dung sẽ không xuất hiện trên đường dẫn.'
+          : 'Tính năng tư vấn AI đang được hoàn thiện và sẽ sớm khả dụng.'}
+      </p>
+      <p id="solution-discovery-error" class="mt-2 min-h-5 text-sm font-semibold text-[#a22121]" role="alert" aria-live="polite"></p>
+    </form>
   </section>
 
   <section class="mx-auto flex w-full max-w-[1080px] flex-col items-center px-5 py-24 text-center md:px-8 md:py-32">
@@ -226,3 +248,39 @@ const commitments = [
     </div>
   </footer>
 </main>
+
+<script>
+  import {
+    SOLUTION_PROMPT_MAX_LENGTH,
+    SolutionClientError,
+    writeSolutionTransfer,
+  } from '../lib/solution/client';
+
+  const form = document.querySelector<HTMLFormElement>('#solution-discovery-form');
+  const input = document.querySelector<HTMLInputElement>('#solution-discovery-input');
+  const error = document.querySelector<HTMLElement>('#solution-discovery-error');
+  const submit = form?.querySelector<HTMLButtonElement>('button[type="submit"]');
+
+  if (form?.dataset.enabled === 'true') form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (!input || !error || !submit) return;
+
+    error.textContent = '';
+    input.removeAttribute('aria-invalid');
+    try {
+      writeSolutionTransfer(window.sessionStorage, input.value);
+      submit.disabled = true;
+      window.location.assign('/giai-phap');
+    } catch (caught) {
+      input.setAttribute('aria-invalid', 'true');
+      if (caught instanceof SolutionClientError && caught.code === 'PROMPT_TOO_LONG') {
+        error.textContent = `Vui lòng mô tả trong tối đa ${SOLUTION_PROMPT_MAX_LENGTH.toLocaleString('vi-VN')} ký tự.`;
+      } else if (caught instanceof SolutionClientError && caught.code === 'PROMPT_REQUIRED') {
+        error.textContent = 'Vui lòng nhập vấn đề bạn muốn AI hỗ trợ.';
+      } else {
+        error.textContent = 'Trình duyệt không thể chuyển nội dung an toàn. Vui lòng mở trang giải pháp và nhập lại.';
+      }
+      input.focus();
+    }
+  });
+</script>
