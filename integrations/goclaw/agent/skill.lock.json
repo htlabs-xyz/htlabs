@@ -1,0 +1,13 @@
+{
+  "name": "htlabs-customer-consultant",
+  "version": "3.2.0",
+  "provenance": "HTLabs local skill htlabs-customer-consultant@3.2.0, copied byte-for-byte on 2026-08-04",
+  "files": {
+    "SKILL.md": "7d3b6266499010cf696767543945317b29e453250a2b43910304e31168f556f0",
+    "references/company-profile.md": "d8a1b023a8f81b39c57226c355303b5514a05afc278ce239e85f23fc339f67b5",
+    "references/consultant-playbook.md": "a9d0731f8e62ca2fcb29fe35420a158ff74b735e0fbea5800e22ca47bdc46772",
+    "references/faq.md": "9966d6d6d421d812cd989fe85666ea7a1263ffdf81e3eacf9a9c5c38e244aeba",
+    "references/objection-handling.md": "c8a5eb731e4c443d1a0ea55335d0b52f5dc71d69713a34f874a6f769e8680201",
+    "references/services.md": "9c9b84bed0e5bd6c5dff317f79801d862b4dc183826b2c940ead9b52884ce428"
+  }
+}

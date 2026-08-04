@@ -32,6 +32,7 @@ plans/templates
 .repomixignore
 .opencode
 AGENTS.md
+!integrations/goclaw/agent/context/AGENTS.md
 repomix-output.xml
 .yarn/install-state.gz
 .agents/

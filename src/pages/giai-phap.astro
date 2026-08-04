@@ -1,0 +1,422 @@
+---
+import SiteHeader from '../components/SiteHeader.astro';
+import Layout from '../layouts/Layout.astro';
+import { isSolutionChatPubliclyEnabled } from '../lib/solution/client';
+
+const solutionChatEnabled = isSolutionChatPubliclyEnabled(
+  import.meta.env.PUBLIC_SOLUTION_CHAT_ENABLED,
+);
+---
+
+<Layout
+  title="Tìm giải pháp AI — HTLabs"
+  description="Mô tả bài toán doanh nghiệp và nhận gợi ý giải pháp AI phù hợp từ HTLabs."
+>
+  <main class="solution-page premium-page min-h-screen bg-white text-[#0d0d0d]">
+    <SiteHeader />
+
+    <section
+      id="solution-experience"
+      data-enabled={String(solutionChatEnabled)}
+      class="solution-chat-shell mx-auto flex min-h-[calc(100vh-88px)] w-full max-w-[920px] flex-col px-4 sm:px-6"
+      aria-labelledby="solution-chat-title"
+    >
+      <header class="flex min-h-16 items-center justify-between gap-3 py-3">
+        <a href="/#discovery" class="solution-icon-button" aria-label="Quay lại trang chủ">
+          <iconify-icon icon="solar:arrow-left-linear" class="text-xl" aria-hidden="true"></iconify-icon>
+        </a>
+        <div class="min-w-0 text-center">
+          <h1 id="solution-chat-title" class="truncate text-[15px] font-semibold sm:text-base">HTLabs AI</h1>
+          <p class="text-[11px] font-medium text-black/45 sm:text-xs">Tư vấn giải pháp doanh nghiệp</p>
+        </div>
+        <button id="solution-clear" type="button" class:list={[
+          'solution-icon-button',
+          !solutionChatEnabled && 'invisible',
+        ]} disabled={!solutionChatEnabled} aria-label="Bắt đầu cuộc trò chuyện mới">
+          <iconify-icon icon="solar:pen-new-square-linear" class="text-xl" aria-hidden="true"></iconify-icon>
+        </button>
+      </header>
+
+      <div class="flex min-h-0 flex-1 flex-col">
+        <div id="solution-empty" class="my-auto px-1 py-10 sm:py-16">
+          <div class="mx-auto max-w-[680px]">
+            <div class="mx-auto flex size-11 items-center justify-center rounded-full bg-[#0054c1] text-white" aria-hidden="true">
+              <iconify-icon icon="solar:stars-minimalistic-bold" class="text-xl"></iconify-icon>
+            </div>
+            <h2 class="mt-5 text-center text-[26px] font-semibold leading-tight tracking-[-0.025em] sm:text-[32px]">
+              {solutionChatEnabled ? 'HTLabs có thể giúp gì cho bạn?' : 'Tư vấn AI sắp ra mắt'}
+            </h2>
+            <p class="mx-auto mt-3 max-w-[560px] text-center text-sm leading-6 text-black/55 sm:text-[15px]">
+              {solutionChatEnabled
+                ? 'Mô tả bài toán, quy trình hoặc mục tiêu của doanh nghiệp để nhận gợi ý phù hợp.'
+                : 'HTLabs đang hoàn thiện trải nghiệm này. Bạn có thể quay lại sau hoặc trao đổi trực tiếp với đội ngũ của chúng tôi.'}
+            </p>
+
+            <div class="mx-auto mt-8 grid max-w-[620px] gap-2 sm:grid-cols-3" aria-label="Gợi ý bài toán phổ biến">
+              <button type="button" class="solution-suggestion" data-solution-suggestion data-prompt="Tôi muốn tự động hóa chăm sóc khách hàng trên website." disabled={!solutionChatEnabled}>
+                <span>Tự động hóa CSKH</span>
+                <iconify-icon icon="solar:arrow-right-up-linear" aria-hidden="true"></iconify-icon>
+              </button>
+              <button type="button" class="solution-suggestion" data-solution-suggestion data-prompt="Tôi muốn tối ưu một quy trình vận hành đang làm thủ công." disabled={!solutionChatEnabled}>
+                <span>Tối ưu quy trình</span>
+                <iconify-icon icon="solar:arrow-right-up-linear" aria-hidden="true"></iconify-icon>
+              </button>
+              <button type="button" class="solution-suggestion" data-solution-suggestion data-prompt="Tôi muốn ứng dụng AI để phân tích dữ liệu bán hàng." disabled={!solutionChatEnabled}>
+                <span>Phân tích bán hàng</span>
+                <iconify-icon icon="solar:arrow-right-up-linear" aria-hidden="true"></iconify-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <ol
+          id="solution-messages"
+          class="solution-messages hidden min-h-0 flex-1 space-y-7 overflow-y-auto px-1 py-8 sm:px-3"
+          role="log"
+          aria-live="polite"
+          aria-relevant="additions"
+        ></ol>
+
+        <div class="solution-composer sticky bottom-0 bg-white pb-3 pt-3 sm:pb-5">
+          <div id="solution-error" class="mx-auto mb-2 hidden max-w-[760px] rounded-xl bg-[#fff3f1] px-4 py-3 text-sm text-[#8c1d18]" role="alert">
+            <span id="solution-error-text"></span>
+            <button id="solution-retry" type="button" class="ml-2 rounded font-semibold underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8c1d18]">Thử lại</button>
+          </div>
+
+          <form id="solution-chat-form" class="mx-auto max-w-[760px]" novalidate>
+            <label for="solution-message" class="sr-only">Nhập câu hỏi hoặc vấn đề cần tư vấn</label>
+            <div class="solution-input flex items-end gap-2 rounded-[26px] border border-black/15 bg-[#f4f4f4] p-2 pl-4 shadow-[0_2px_12px_rgba(0,0,0,0.04)] transition focus-within:border-black/25 focus-within:bg-white focus-within:shadow-[0_4px_20px_rgba(0,0,0,0.08)]">
+              <textarea
+                id="solution-message"
+                name="message"
+                rows="1"
+                required
+                maxlength="2000"
+                disabled={!solutionChatEnabled}
+                aria-disabled={!solutionChatEnabled ? 'true' : undefined}
+                placeholder="Nhắn tin cho HTLabs AI"
+                aria-describedby="solution-status solution-count"
+                class="max-h-40 min-h-10 min-w-0 flex-1 resize-none bg-transparent py-2.5 text-[16px] leading-6 text-black outline-none placeholder:text-black/40"
+              ></textarea>
+              <button id="solution-send" type="submit" aria-label={solutionChatEnabled ? 'Gửi câu hỏi' : 'Gửi câu hỏi — tạm thời chưa khả dụng'} disabled={!solutionChatEnabled} aria-disabled={!solutionChatEnabled ? 'true' : undefined} class="flex size-10 shrink-0 items-center justify-center rounded-full bg-black text-white transition hover:bg-black/75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:bg-black/20">
+                <iconify-icon icon="solar:arrow-up-linear" class="text-xl"></iconify-icon>
+              </button>
+            </div>
+            <div class="mt-2 flex min-h-5 items-center justify-between gap-4 px-2 text-[11px] text-black/45 sm:text-xs">
+              <p id="solution-status" role="status" aria-live="polite">
+                {solutionChatEnabled
+                  ? 'HTLabs AI có thể mắc lỗi. Hãy kiểm tra thông tin quan trọng.'
+                  : 'Tính năng hiện chưa khả dụng.'}
+              </p>
+              <p id="solution-count" class="shrink-0" aria-live="off"><span>0</span>/2000</p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+<style>
+  .solution-chat-shell {
+    animation: solution-fade 0.35s ease-out both;
+  }
+
+  .solution-icon-button {
+    display: flex;
+    width: 2.5rem;
+    height: 2.5rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    color: rgba(0, 0, 0, 0.7);
+    transition: background-color 0.2s ease;
+  }
+
+  .solution-icon-button:hover:not(:disabled) {
+    background: #f2f2f2;
+  }
+
+  .solution-icon-button:focus-visible,
+  .solution-suggestion:focus-visible {
+    outline: 2px solid #0054c1;
+    outline-offset: 2px;
+  }
+
+  .solution-suggestion {
+    display: flex;
+    min-height: 3rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 0.85rem;
+    background: #fff;
+    padding: 0.7rem 0.85rem;
+    color: rgba(0, 0, 0, 0.68);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-align: left;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .solution-suggestion:hover:not(:disabled) {
+    border-color: rgba(0, 0, 0, 0.18);
+    background: #f7f7f7;
+  }
+
+  .solution-suggestion:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  .solution-composer::before {
+    position: absolute;
+    top: -1.5rem;
+    right: 0;
+    left: 0;
+    height: 1.5rem;
+    background: linear-gradient(to top, #fff, rgba(255, 255, 255, 0));
+    content: '';
+    pointer-events: none;
+  }
+
+  @keyframes solution-fade {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .solution-chat-shell {
+      animation: none;
+    }
+
+    .solution-suggestion,
+    .solution-icon-button,
+    .solution-input,
+    #solution-send {
+      transition: none;
+    }
+  }
+
+  @media (prefers-contrast: more) {
+    .solution-suggestion,
+    .solution-input {
+      border-color: #000;
+    }
+  }
+</style>
+
+<script>
+  import {
+    SOLUTION_PROMPT_MAX_LENGTH,
+    SolutionClientError,
+    consumeSolutionTransfer,
+    createTurnIdempotencyKey,
+    normalizeSolutionPrompt,
+    requestSolutionReply,
+  } from '../lib/solution/client';
+
+  const root = document.querySelector<HTMLElement>('#solution-experience');
+  const empty = document.querySelector<HTMLElement>('#solution-empty');
+  const messages = document.querySelector<HTMLOListElement>('#solution-messages');
+  const form = document.querySelector<HTMLFormElement>('#solution-chat-form');
+  const input = document.querySelector<HTMLTextAreaElement>('#solution-message');
+  const send = document.querySelector<HTMLButtonElement>('#solution-send');
+  const status = document.querySelector<HTMLElement>('#solution-status');
+  const count = document.querySelector<HTMLElement>('#solution-count span');
+  const errorBox = document.querySelector<HTMLElement>('#solution-error');
+  const errorText = document.querySelector<HTMLElement>('#solution-error-text');
+  const retry = document.querySelector<HTMLButtonElement>('#solution-retry');
+  const clear = document.querySelector<HTMLButtonElement>('#solution-clear');
+  const suggestions = document.querySelectorAll<HTMLButtonElement>('[data-solution-suggestion]');
+  const featureEnabled = root?.dataset.enabled === 'true';
+
+  let conversationId: string | undefined;
+  let pending = false;
+  let controller: AbortController | undefined;
+  let retryTurn: { message: string; idempotencyKey: string } | undefined;
+
+  function appendMessage(role: 'user' | 'assistant', value: string): void {
+    if (!messages || !empty) return;
+    empty.hidden = true;
+    messages.classList.remove('hidden');
+
+    const item = document.createElement('li');
+    item.className = role === 'user' ? 'flex justify-end' : 'flex justify-start gap-3';
+
+    if (role === 'assistant') {
+      const avatar = document.createElement('span');
+      avatar.className = 'mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-full bg-[#0054c1] text-xs font-bold text-white';
+      avatar.textContent = 'HT';
+      avatar.setAttribute('aria-hidden', 'true');
+      item.append(avatar);
+    }
+
+    const article = document.createElement('article');
+    article.className = role === 'user'
+      ? 'max-w-[88%] rounded-[20px] bg-[#f4f4f4] px-4 py-3 text-black sm:max-w-[75%]'
+      : 'min-w-0 max-w-[calc(100%-2.75rem)] pt-1 text-black sm:max-w-[84%]';
+
+    const author = document.createElement('p');
+    author.className = role === 'user'
+      ? 'sr-only'
+      : 'mb-1.5 text-xs font-semibold text-black/55';
+    author.textContent = role === 'user' ? 'Bạn' : 'HTLabs AI';
+
+    const body = document.createElement('p');
+    body.className = 'whitespace-pre-wrap break-words text-[15px] leading-7 md:text-base';
+    body.textContent = value;
+
+    article.append(author, body);
+    item.append(article);
+    messages.append(item);
+    item.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  }
+
+  function setPending(value: boolean): void {
+    pending = value;
+    if (root) root.setAttribute('aria-busy', String(value));
+    if (send) send.disabled = value;
+    if (input) input.disabled = value;
+    if (status) status.textContent = value
+      ? 'HTLabs AI đang phân tích...'
+      : 'HTLabs AI có thể mắc lỗi. Hãy kiểm tra thông tin quan trọng.';
+  }
+
+  function hideError(): void {
+    errorBox?.classList.add('hidden');
+    if (errorText) errorText.textContent = '';
+  }
+
+  function showError(caught: unknown): void {
+    if (!errorBox || !errorText) return;
+    const code = caught instanceof SolutionClientError ? caught.code : '';
+    errorText.textContent = code === 'RATE_LIMITED'
+      ? 'Bạn đã gửi quá nhanh. Vui lòng đợi một chút.'
+      : code === 'INVALID_CONVERSATION'
+        ? 'Phiên tư vấn đã được làm mới. Nhấn Thử lại để tiếp tục.'
+      : code === 'SERVICE_UNAVAILABLE' || code === 'NETWORK_ERROR'
+        ? 'Dịch vụ đang tạm gián đoạn. Vui lòng thử lại.'
+        : 'Chưa thể nhận tư vấn lúc này. Vui lòng thử lại.';
+    errorBox.classList.remove('hidden');
+  }
+
+  async function sendTurn(turn: { message: string; idempotencyKey: string }, appendUser: boolean): Promise<void> {
+    if (!featureEnabled || pending) return;
+    hideError();
+    if (appendUser) appendMessage('user', turn.message);
+    retryTurn = turn;
+    setPending(true);
+    controller = new AbortController();
+
+    try {
+      const reply = await requestSolutionReply(
+        { message: turn.message, conversationId, idempotencyKey: turn.idempotencyKey },
+        fetch,
+        controller.signal,
+      );
+      conversationId = reply.conversationId;
+      retryTurn = undefined;
+      appendMessage('assistant', reply.message);
+    } catch (caught) {
+      if (!(caught instanceof DOMException && caught.name === 'AbortError')) {
+        if (caught instanceof SolutionClientError && caught.code === 'INVALID_CONVERSATION') {
+          conversationId = undefined;
+        }
+        showError(caught);
+      }
+    } finally {
+      controller = undefined;
+      setPending(false);
+      input?.focus();
+    }
+  }
+
+  function updateCount(): void {
+    if (!input || !count) return;
+    count.textContent = String(Array.from(input.value).length);
+  }
+
+  form?.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (!featureEnabled || !input || pending) return;
+    input.removeAttribute('aria-invalid');
+    try {
+      const message = normalizeSolutionPrompt(input.value);
+      const turn = { message, idempotencyKey: createTurnIdempotencyKey() };
+      input.value = '';
+      updateCount();
+      void sendTurn(turn, true);
+    } catch (caught) {
+      input.setAttribute('aria-invalid', 'true');
+      if (status) status.textContent = caught instanceof SolutionClientError && caught.code === 'PROMPT_TOO_LONG'
+        ? `Vui lòng nhập tối đa ${SOLUTION_PROMPT_MAX_LENGTH.toLocaleString('vi-VN')} ký tự.`
+        : 'Vui lòng nhập câu hỏi trước khi gửi.';
+      input.focus();
+    }
+  });
+
+  input?.addEventListener('input', updateCount);
+  suggestions.forEach((suggestion) => {
+    suggestion.addEventListener('click', () => {
+      if (!featureEnabled || !input || pending) return;
+      input.value = suggestion.dataset.prompt ?? '';
+      updateCount();
+      input.focus();
+    });
+  });
+  input?.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' && !event.shiftKey && !event.isComposing) {
+      event.preventDefault();
+      form?.requestSubmit();
+    }
+  });
+
+  retry?.addEventListener('click', () => {
+    if (featureEnabled && retryTurn) void sendTurn(retryTurn, false);
+  });
+
+  clear?.addEventListener('click', () => {
+    if (!featureEnabled) return;
+    controller?.abort();
+    hideError();
+    conversationId = undefined;
+    retryTurn = undefined;
+    messages?.replaceChildren();
+    messages?.classList.add('hidden');
+    if (empty) empty.hidden = false;
+    input?.focus();
+  });
+
+  window.addEventListener('pagehide', () => controller?.abort(), { once: true });
+
+  if (featureEnabled) {
+    updateCount();
+    let transferredPrompt: string | null = null;
+    try {
+      transferredPrompt = consumeSolutionTransfer(window.sessionStorage);
+    } catch {
+      transferredPrompt = null;
+    }
+    if (transferredPrompt) {
+      try {
+        void sendTurn(
+          { message: transferredPrompt, idempotencyKey: createTurnIdempotencyKey() },
+          true,
+        );
+      } catch (caught) {
+        if (input) input.value = transferredPrompt;
+        updateCount();
+        showError(caught);
+        input?.focus();
+      }
+    } else {
+      input?.focus();
+    }
+  }
+</script>
+</Layout>
